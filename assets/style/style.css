@@ -141,10 +141,10 @@ body {
     margin: 0;
 }
 
-.progress-bar {
+/* .progress-bar {
     background-color: #4caf50; /* Green color */
-    color: white; /* Text color for progress percentage */
-}
+    /* color: white; /* Text color for progress percentage */
+/* } */ 
 
 /* Responsive Styles */
 @media (max-width: 768px) {
