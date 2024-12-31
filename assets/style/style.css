@@ -85,6 +85,7 @@ body {
 
 .hero-img:hover {
     transform: scale(1.1);
+    
 }
 
 /* Card Styles */
@@ -98,6 +99,8 @@ body {
 .card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    background-color: #80deea;
+    animation-duration: 1.3s;
 }
 /* project*/
 .project-card img {
@@ -158,3 +161,32 @@ body {
         font-size: 1rem;
     }
 }
+/* theme mode */
+body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  body.dark-mode {
+    background-color: #000000;
+    color: #ffffff;
+  }
+  .toggle-container {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+    transition: transform 0.3s;
+  }
+  .light-mode .icon {
+    transform: rotate(0deg);
+  }
+  .dark-mode .icon {
+    transform: rotate(180deg);
+  }
