@@ -1,8 +1,47 @@
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Typed } from 'react-typed';
 
 const HomeSection: React.FC = () => {
+  const [textIndex, setTextIndex] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  
+  const texts = [
+    'Full Stack Developer',
+    'MERN Stack Expert',
+    'UI/UX Enthusiast',
+    'Problem Solver'
+  ];
+  
+  useEffect(() => {
+    const typingSpeed = isDeleting ? 50 : 150;
+    const currentText = texts[textIndex];
+    
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        setDisplayText(currentText.substring(0, displayText.length + 1));
+        
+        // If we've typed the full string, start deleting after a pause
+        if (displayText.length === currentText.length) {
+          setTimeout(() => setIsDeleting(true), 1500);
+        }
+      } else {
+        // Deleting
+        setDisplayText(currentText.substring(0, displayText.length - 1));
+        
+        // If we've deleted everything, move to next text
+        if (displayText.length === 0) {
+          setIsDeleting(false);
+          setTextIndex((textIndex + 1) % texts.length);
+        }
+      }
+    }, typingSpeed);
+    
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, textIndex, texts]);
+  
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center section-padding pt-24">
       <div className="container mx-auto text-center">
@@ -14,19 +53,11 @@ const HomeSection: React.FC = () => {
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
             Hi, I'm <span className="text-portfolio-blue dark:text-portfolio-green">John Doe</span>
           </h1>
-          <div className="h-16 md:h-20">
-            <Typed
-              strings={[
-                'Full Stack Developer',
-                'MERN Stack Expert',
-                'UI/UX Enthusiast',
-                'Problem Solver'
-              ]}
-              typeSpeed={80}
-              backSpeed={50}
-              loop
-              className="text-2xl md:text-3xl lg:text-4xl text-portfolio-amber"
-            />
+          <div className="h-16 md:h-20 flex items-center justify-center">
+            <span className="text-2xl md:text-3xl lg:text-4xl text-portfolio-amber">
+              {displayText}
+              <span className="animate-blink">|</span>
+            </span>
           </div>
           <p className="text-lg md:text-xl max-w-2xl mx-auto my-8 text-foreground/80">
             I build beautiful, responsive, and user-friendly web applications using modern technologies.
