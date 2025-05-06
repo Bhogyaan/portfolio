@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -7,7 +6,9 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import emailjs from 'emailjs-com';
+// Import emailjs without type checking using require
+// @ts-ignore
+import * as emailjs from 'emailjs-com';
 
 // For now, we'll use dummy values for EmailJS
 const EMAILJS_SERVICE_ID = "service_id";

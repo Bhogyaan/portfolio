@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import Typed from 'react-typed';
+import { Typed } from 'react-typed';
 
 const HomeSection: React.FC = () => {
   return (
