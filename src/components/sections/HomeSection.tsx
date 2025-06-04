@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowDown, Download, Mail, Github, Linkedin, Twitter } from 'lucide-react';
+import { ArrowDown, Download, Mail, Github, Linkedin, Twitter, Instagram, Facebook, Youtube } from 'lucide-react';
 
 const HomeSection: React.FC = () => {
   const [textIndex, setTextIndex] = useState(0);
@@ -61,9 +61,12 @@ const HomeSection: React.FC = () => {
   };
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Github, href: 'https://github.com', label: 'GitHub', color: 'hover:text-gray-900 dark:hover:text-white' },
+    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn', color: 'hover:text-blue-600' },
+    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter', color: 'hover:text-blue-400' },
+    { icon: Instagram, href: 'https://instagram.com', label: 'Instagram', color: 'hover:text-pink-500' },
+    { icon: Facebook, href: 'https://facebook.com', label: 'Facebook', color: 'hover:text-blue-700' },
+    { icon: Youtube, href: 'https://youtube.com', label: 'YouTube', color: 'hover:text-red-600' },
   ];
   
   return (
@@ -189,6 +192,17 @@ const HomeSection: React.FC = () => {
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-10 transition-opacity" />
             </motion.a>
+
+            <motion.a
+              href="/resume.pdf"
+              download="Alex_Morgan_Resume.pdf"
+              className="group flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 border border-white/20 rounded-2xl font-semibold text-sm md:text-lg hover:bg-white/5 transition-all duration-300 w-full sm:w-auto"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Download className="w-4 h-4 md:w-5 md:h-5" />
+              Download Resume
+            </motion.a>
             
             <motion.a
               href="#contact"
@@ -204,20 +218,22 @@ const HomeSection: React.FC = () => {
           {/* Social Links */}
           <motion.div
             variants={itemVariants}
-            className="flex justify-center gap-4 md:gap-6 mt-8 md:mt-12"
+            className="flex justify-center gap-3 md:gap-4 mt-8 md:mt-12 flex-wrap"
           >
             {socialLinks.map((social, index) => (
               <motion.a
                 key={index}
                 href={social.href}
-                className="p-2 md:p-3 glass-card rounded-xl hover:bg-white/10 transition-all duration-300 group"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-2 md:p-3 glass-card rounded-xl hover:bg-white/10 transition-all duration-300 group ${social.color}`}
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 + index * 0.1 }}
               >
-                <social.icon className="w-5 h-5 md:w-6 md:h-6 text-foreground/70 group-hover:text-primary transition-colors" />
+                <social.icon className="w-4 h-4 md:w-5 md:h-5 transition-colors" />
               </motion.a>
             ))}
           </motion.div>

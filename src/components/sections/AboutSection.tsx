@@ -55,7 +55,7 @@ const AboutSection: React.FC = () => {
           </motion.div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
-            {/* Profile Image */}
+            {/* Profile Image - Now Circular */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
@@ -63,13 +63,15 @@ const AboutSection: React.FC = () => {
               className="relative"
             >
               <div className="relative w-full max-w-md mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-3xl transform rotate-6 glow-effect"></div>
-                <div className="relative glass-card p-2 rounded-3xl">
-                  <img 
-                    src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                    alt="Alex Morgan" 
-                    className="w-full h-auto rounded-2xl"
-                  />
+                <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full transform rotate-6 glow-effect"></div>
+                <div className="relative glass-card p-2 rounded-full">
+                  <div className="w-full aspect-square rounded-full overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                      alt="Alex Morgan" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
                 {/* Floating Elements */}
                 <div className="absolute -top-4 -right-4 glass-card p-3 rounded-xl floating-element">
