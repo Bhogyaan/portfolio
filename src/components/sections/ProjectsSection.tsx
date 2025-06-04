@@ -1,6 +1,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { ExternalLink, Github } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -63,18 +64,28 @@ const ProjectsSection: React.FC = () => {
   });
 
   return (
-    <section id="projects" className="section-padding bg-gray-50 dark:bg-gray-900/50">
-      <div className="container mx-auto" ref={ref}>
+    <section id="projects" className="section-padding bg-gray-50/50 dark:bg-gray-900/30 overflow-hidden">
+      <div className="container mx-auto px-4" ref={ref}>
         <motion.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
-            My <span className="text-portfolio-blue dark:text-portfolio-green">Projects</span>
-          </h2>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-center mb-12 md:mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
+              My <span className="gradient-text">Projects</span>
+            </h2>
+            <p className="text-base md:text-xl text-foreground/70 max-w-2xl mx-auto">
+              Showcase of innovative solutions and creative implementations
+            </p>
+          </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-7xl mx-auto">
             {projects.map((project, index) => (
               <motion.div
                 key={index}
@@ -82,31 +93,40 @@ const ProjectsSection: React.FC = () => {
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 whileHover={{ y: -5 }}
-                className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg"
+                className="glass-card rounded-2xl overflow-hidden shadow-xl glow-effect magnetic-hover"
               >
-                <div className="relative overflow-hidden h-60">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform hover:scale-110 duration-500"
-                  />
+                <div className="relative overflow-hidden">
+                  <div className="flex justify-center py-6 bg-gradient-to-br from-primary/10 to-accent/10">
+                    <div className="relative w-32 h-32 md:w-40 md:h-40">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover rounded-full border-4 border-white/20 shadow-2xl transition-transform hover:scale-110 duration-500"
+                      />
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-foreground/70 mb-4">{project.description}</p>
+                <div className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-2 md:mb-3 gradient-text">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm md:text-base text-foreground/70 mb-4 md:mb-5 leading-relaxed">
+                    {project.description}
+                  </p>
                   
-                  <div className="mb-5 flex flex-wrap gap-2">
+                  <div className="mb-4 md:mb-6 flex flex-wrap gap-1.5 md:gap-2">
                     {project.technologies.map((tech, idx) => (
                       <span 
                         key={idx}
-                        className="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm"
+                        className="px-2 py-1 md:px-3 md:py-1 bg-primary/10 text-primary border border-primary/20 rounded-full text-xs md:text-sm font-medium"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
                   
-                  <div className="flex gap-4">
+                  <div className="flex flex-col sm:flex-row gap-3">
                     {project.links.demo && (
                       <motion.a
                         href={project.links.demo}
@@ -114,9 +134,10 @@ const ProjectsSection: React.FC = () => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-4 py-2 bg-portfolio-blue text-white rounded-md flex-1 text-center"
+                        className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-medium text-sm transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
                       >
-                        Live Demo
+                        <ExternalLink className="w-4 h-4" />
+                        <span>Live Demo</span>
                       </motion.a>
                     )}
                     {project.links.github && (
@@ -126,9 +147,10 @@ const ProjectsSection: React.FC = () => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-4 py-2 bg-gray-800 dark:bg-gray-700 text-white rounded-md flex-1 text-center"
+                        className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-800 dark:bg-gray-700 text-white rounded-xl font-medium text-sm transition-all duration-300 hover:bg-gray-700 dark:hover:bg-gray-600"
                       >
-                        GitHub
+                        <Github className="w-4 h-4" />
+                        <span>GitHub</span>
                       </motion.a>
                     )}
                   </div>
