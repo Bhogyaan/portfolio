@@ -1,7 +1,6 @@
 
 import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
-import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
 import ParticleBackground from "@/components/ParticleBackground";
 import HomeSection from "@/components/sections/HomeSection";
@@ -60,9 +59,8 @@ const PortfolioPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen overflow-x-hidden mobile-nav-spacing">
+    <div className="min-h-screen overflow-x-hidden">
       <Navbar />
-      <MobileBottomNav />
       <ParticleBackground />
       
       <main className="relative z-10">

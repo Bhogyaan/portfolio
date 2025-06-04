@@ -1,262 +1,157 @@
 
-import { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowDown, Download, Mail, Github, Linkedin, Twitter, Instagram, Facebook, Youtube } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowDown, Download, Github, Linkedin, Twitter, Mail, Instagram } from 'lucide-react';
 
-const HomeSection: React.FC = () => {
-  const [textIndex, setTextIndex] = useState(0);
-  const [displayText, setDisplayText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 150]);
-  
-  const texts = [
-    'Full Stack Developer',
-    'UI/UX Designer', 
-    'React Specialist',
-    'Problem Solver',
-    'Innovation Driver'
-  ];
-  
-  useEffect(() => {
-    const typingSpeed = isDeleting ? 50 : 150;
-    const currentText = texts[textIndex];
-    
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        setDisplayText(currentText.substring(0, displayText.length + 1));
-        if (displayText.length === currentText.length) {
-          setTimeout(() => setIsDeleting(true), 2000);
-        }
-      } else {
-        setDisplayText(currentText.substring(0, displayText.length - 1));
-        if (displayText.length === 0) {
-          setIsDeleting(false);
-          setTextIndex((textIndex + 1) % texts.length);
-        }
-      }
-    }, typingSpeed);
-    
-    return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, textIndex, texts]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        when: "beforeChildren",
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" }
-    }
-  };
-
-  const socialLinks = [
-    { icon: Github, href: 'https://github.com', label: 'GitHub', color: 'hover:text-gray-900 dark:hover:text-white' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn', color: 'hover:text-blue-600' },
-    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter', color: 'hover:text-blue-400' },
-    { icon: Instagram, href: 'https://instagram.com', label: 'Instagram', color: 'hover:text-pink-500' },
-    { icon: Facebook, href: 'https://facebook.com', label: 'Facebook', color: 'hover:text-blue-700' },
-    { icon: Youtube, href: 'https://youtube.com', label: 'YouTube', color: 'hover:text-red-600' },
-  ];
-  
+const HomeSection = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center section-padding pt-32 md:pt-24 overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          style={{ y }}
-          className="absolute top-20 left-10 w-32 h-32 md:w-64 md:h-64 bg-primary/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3]
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-          }}
-        />
-        <motion.div
-          style={{ y: useTransform(scrollY, [0, 500], [0, -100]) }}
-          className="absolute top-40 right-10 w-24 h-24 md:w-48 md:h-48 bg-accent/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.4, 0.2]
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-          }}
-        />
-        <motion.div
-          style={{ y: useTransform(scrollY, [0, 500], [0, 75]) }}
-          className="absolute bottom-40 left-1/3 w-16 h-16 md:w-32 md:h-32 bg-purple-500/20 rounded-full blur-2xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.4, 0.6, 0.4]
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-          }}
-        />
-      </div>
-
-      <div className="container mx-auto text-center relative z-10 max-w-5xl px-4">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="space-y-6 md:space-y-8"
-        >
-          {/* Badge */}
-          <motion.div 
-            variants={itemVariants} 
-            className="inline-block"
-          >
-            <div className="glass-card px-4 py-2 md:px-6 md:py-3 inline-flex items-center gap-2 glow-effect">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="text-xs md:text-sm font-medium">Available for opportunities</span>
-            </div>
-          </motion.div>
-
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10"></div>
+      
+      {/* Floating Elements */}
+      <div className="absolute top-20 left-10 w-32 h-32 bg-primary/10 rounded-full blur-xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-accent/10 rounded-full blur-xl animate-pulse delay-1000"></div>
+      
+      <div className="container mx-auto px-4 py-20 relative z-10">
+        <div className="text-center max-w-4xl mx-auto">
           {/* Main Heading */}
-          <motion.div variants={itemVariants} className="space-y-2 md:space-y-4">
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-6"
+          >
+            <motion.h1 
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 font-space-grotesk"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               Hi, I'm{' '}
               <motion.span 
-                className="gradient-text block mt-1 md:mt-2"
+                className="gradient-text bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient"
                 animate={{
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                 }}
                 transition={{
                   duration: 3,
+                  ease: "easeInOut",
                   repeat: Infinity,
-                  ease: "linear"
                 }}
                 style={{
-                  backgroundSize: "200% 200%",
+                  backgroundSize: '200% 200%',
                 }}
               >
                 Alex Morgan
               </motion.span>
-            </h1>
+            </motion.h1>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-2"
+            >
+              Full Stack Developer
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-lg md:text-xl text-muted-foreground/80"
+            >
+              Building digital experiences with passion and precision
+            </motion.div>
           </motion.div>
-
-          {/* Animated Subtitle */}
-          <motion.div
-            variants={itemVariants} 
-            className="h-16 md:h-20 flex items-center justify-center"
-          >
-            <div className="text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold">
-              <span className="text-accent">
-                {displayText}
-              </span>
-              <span className="animate-pulse text-primary ml-1">|</span>
-            </div>
-          </motion.div>
-
-          {/* Description */}
-          <motion.p
-            variants={itemVariants}
-            className="text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto text-foreground/80 leading-relaxed px-4"
-          >
-            Crafting exceptional digital experiences with cutting-edge technologies. 
-            I transform ideas into beautiful, functional, and scalable applications 
-            that make a real difference.
-          </motion.p>
 
           {/* Action Buttons */}
           <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center mt-8 md:mt-12 px-4"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
           >
             <motion.a
-              href="#projects"
-              className="group relative overflow-hidden glass-card px-6 py-3 md:px-8 md:py-4 rounded-2xl font-semibold text-sm md:text-lg glow-effect w-full sm:w-auto"
+              href="#contact"
+              className="group px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                View My Work
-                <ArrowDown className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-y-1 transition-transform" />
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-10 transition-opacity" />
-            </motion.a>
-
-            <motion.a
-              href="/resume.pdf"
-              download="Alex_Morgan_Resume.pdf"
-              className="group flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 border border-white/20 rounded-2xl font-semibold text-sm md:text-lg hover:bg-white/5 transition-all duration-300 w-full sm:w-auto"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Download className="w-4 h-4 md:w-5 md:h-5" />
-              Download Resume
+              <Mail className="w-5 h-5" />
+              Get In Touch
+              <motion.div
+                className="w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300"
+                layoutId="contact-underline"
+              />
             </motion.a>
             
             <motion.a
-              href="#contact"
-              className="group flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 border border-white/20 rounded-2xl font-semibold text-sm md:text-lg hover:bg-white/5 transition-all duration-300 w-full sm:w-auto"
+              href="/resume.pdf"
+              download
+              className="group px-8 py-4 bg-accent text-accent-foreground rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Mail className="w-4 h-4 md:w-5 md:h-5" />
-              Get In Touch
+              <Download className="w-5 h-5" />
+              Download Resume
+              <motion.div
+                className="w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300"
+                layoutId="resume-underline"
+              />
             </motion.a>
           </motion.div>
 
           {/* Social Links */}
           <motion.div
-            variants={itemVariants}
-            className="flex justify-center gap-3 md:gap-4 mt-8 md:mt-12 flex-wrap"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.0 }}
+            className="flex justify-center items-center gap-6 mb-16"
           >
-            {socialLinks.map((social, index) => (
+            {[
+              { icon: Github, href: "https://github.com", label: "GitHub", color: "hover:text-gray-900 dark:hover:text-white" },
+              { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn", color: "hover:text-blue-600" },
+              { icon: Twitter, href: "https://twitter.com", label: "Twitter", color: "hover:text-blue-400" },
+              { icon: Instagram, href: "https://instagram.com", label: "Instagram", color: "hover:text-pink-500" },
+              { icon: Mail, href: "mailto:alex@example.com", label: "Email", color: "hover:text-red-500" }
+            ].map((social, index) => (
               <motion.a
-                key={index}
+                key={social.label}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`p-2 md:p-3 glass-card rounded-xl hover:bg-white/10 transition-all duration-300 group ${social.color}`}
-                whileHover={{ scale: 1.1, y: -2 }}
+                className={`p-3 rounded-full glass-card text-muted-foreground transition-all duration-300 ${social.color} hover:scale-110 hover:shadow-lg group`}
+                whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 + index * 0.1 }}
+                transition={{ delay: 1.2 + index * 0.1 }}
               >
-                <social.icon className="w-4 h-4 md:w-5 md:h-5 transition-colors" />
+                <social.icon className="w-6 h-6" />
+                <span className="sr-only">{social.label}</span>
               </motion.a>
             ))}
           </motion.div>
-        </motion.div>
-        
-        {/* Scroll Indicator */}
-        <motion.div 
-          className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-        >
-          <a href="#about" className="flex flex-col items-center justify-center group">
-            <span className="text-sm mb-3 opacity-70 group-hover:opacity-100 transition-opacity">
-              Discover More
-            </span>
-            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-bounce"></div>
-            </div>
-          </a>
-        </motion.div>
+
+          {/* Scroll Indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.5 }}
+            className="flex flex-col items-center"
+          >
+            <motion.a
+              href="#about"
+              className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors group"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <span className="text-sm font-medium">Scroll to explore</span>
+              <ArrowDown className="w-5 h-5 group-hover:text-primary transition-colors" />
+            </motion.a>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
