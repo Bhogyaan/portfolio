@@ -1,7 +1,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Download, Code, Users, Coffee, Award } from 'lucide-react';
+import { Download, Code, Users, Coffee, Award, GraduationCap, MapPin } from 'lucide-react';
 
 const AboutSection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -10,27 +10,27 @@ const AboutSection: React.FC = () => {
   });
 
   const stats = [
-    { icon: Code, label: 'Projects Completed', value: '150+' },
-    { icon: Users, label: 'Happy Clients', value: '50+' },
+    { icon: Code, label: 'Projects Completed', value: '15+' },
+    { icon: Users, label: 'Technologies Mastered', value: '12+' },
     { icon: Coffee, label: 'Cups of Coffee', value: '∞' },
-    { icon: Award, label: 'Years Experience', value: '5+' },
+    { icon: Award, label: 'Years Experience', value: '3+' },
   ];
 
   const skills = [
-    'React & Next.js',
-    'TypeScript',
-    'Node.js & Python',
-    'UI/UX Design',
-    'Cloud Architecture',
-    'DevOps & CI/CD'
+    'React.js & Vue.js',
+    'Flutter & Dart',
+    'Node.js & Express',
+    'MongoDB & MySQL',
+    'Power BI Analytics',
+    'UI/UX Design'
   ];
 
   return (
     <section id="about" className="section-padding relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
       <div className="container mx-auto relative z-10" ref={ref}>
@@ -47,15 +47,18 @@ const AboutSection: React.FC = () => {
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              About <span className="gradient-text">Me</span>
+              About <span 
+                className="inline-block bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient"
+                style={{ backgroundSize: '200% 200%' }}
+              >Me</span>
             </h2>
             <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
-              Passionate developer with a mission to create digital experiences that inspire and engage.
+              Passionate developer crafting innovative digital solutions with modern technologies.
             </p>
           </motion.div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
-            {/* Profile Image - Now Circular */}
+            {/* Profile Image */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
@@ -63,23 +66,58 @@ const AboutSection: React.FC = () => {
               className="relative"
             >
               <div className="relative w-full max-w-md mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full transform rotate-6 glow-effect"></div>
-                <div className="relative glass-card p-2 rounded-full">
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full transform rotate-6"
+                  whileHover={{ rotate: 12, scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                  style={{
+                    filter: 'blur(8px)',
+                    opacity: 0.7,
+                  }}
+                />
+                <motion.div 
+                  className="relative glass-card p-2 rounded-full"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                  style={{
+                    backdropFilter: 'blur(20px)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    border: '2px solid rgba(255, 255, 255, 0.2)',
+                  }}
+                >
                   <div className="w-full aspect-square rounded-full overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                      alt="Alex Morgan" 
-                      className="w-full h-full object-cover"
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                      alt="NR Bhogyaan" 
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                     />
                   </div>
-                </div>
+                </motion.div>
                 {/* Floating Elements */}
-                <div className="absolute -top-4 -right-4 glass-card p-3 rounded-xl floating-element">
+                <motion.div 
+                  className="absolute -top-4 -right-4 glass-card p-3 rounded-xl"
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  style={{
+                    backdropFilter: 'blur(20px)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                  }}
+                >
                   <Code className="w-6 h-6 text-primary" />
-                </div>
-                <div className="absolute -bottom-4 -left-4 glass-card p-3 rounded-xl floating-element" style={{ animationDelay: '2s' }}>
-                  <Award className="w-6 h-6 text-accent" />
-                </div>
+                </motion.div>
+                <motion.div 
+                  className="absolute -bottom-4 -left-4 glass-card p-3 rounded-xl"
+                  animate={{ y: [0, -15, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                  style={{
+                    backdropFilter: 'blur(20px)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                  }}
+                >
+                  <GraduationCap className="w-6 h-6 text-accent" />
+                </motion.div>
               </div>
             </motion.div>
             
@@ -92,42 +130,67 @@ const AboutSection: React.FC = () => {
             >
               <div className="space-y-6">
                 <h3 className="text-3xl font-bold">
-                  Full Stack Developer & <span className="gradient-text">Creative Thinker</span>
+                  Full Stack Developer & <span 
+                    className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
+                  >Tech Enthusiast</span>
                 </h3>
                 <div className="space-y-4 text-lg text-foreground/80">
                   <p>
-                    Hello! I'm Alex Morgan, a passionate full stack developer with over 5 years of experience 
-                    crafting digital solutions that bridge the gap between imagination and reality.
+                    Hello! I'm NR Bhogyaan, a passionate Computer Science postgraduate with expertise in 
+                    MERN stack and Flutter development. Currently pursuing my Master's in Computer Applications 
+                    at KLN College of Engineering.
                   </p>
                   <p>
-                    My journey began with a curiosity about how things work, which evolved into a deep love for 
-                    creating seamless user experiences backed by robust, scalable architectures.
+                    I specialize in creating responsive web applications and cross-platform mobile apps, 
+                    with hands-on experience in full-stack development, database management, and modern UI/UX design.
                   </p>
                   <p>
-                    When I'm not coding, you'll find me exploring new technologies, contributing to open source, 
-                    or mentoring aspiring developers in the community.
+                    Currently interning at MindVision Technology, where I'm honing my skills in MERN stack 
+                    development and contributing to innovative projects.
                   </p>
                 </div>
               </div>
 
               {/* Quick Info */}
               <div className="grid grid-cols-2 gap-6">
-                <div className="space-y-2">
+                <motion.div 
+                  className="space-y-2"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
                   <p className="text-sm text-foreground/60 uppercase tracking-wider">Name</p>
-                  <p className="font-semibold">Alex Morgan</p>
-                </div>
-                <div className="space-y-2">
+                  <p className="font-semibold">NR Bhogyaan</p>
+                </motion.div>
+                <motion.div 
+                  className="space-y-2"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
                   <p className="text-sm text-foreground/60 uppercase tracking-wider">Location</p>
-                  <p className="font-semibold">San Francisco, CA</p>
-                </div>
-                <div className="space-y-2">
+                  <p className="font-semibold flex items-center gap-1">
+                    <MapPin className="w-4 h-4" />
+                    Tamil Nadu, India
+                  </p>
+                </motion.div>
+                <motion.div 
+                  className="space-y-2"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
                   <p className="text-sm text-foreground/60 uppercase tracking-wider">Experience</p>
-                  <p className="font-semibold">5+ Years</p>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm text-foreground/60 uppercase tracking-wider">Availability</p>
-                  <p className="font-semibold text-green-400">Available</p>
-                </div>
+                  <p className="font-semibold">3+ Years</p>
+                </motion.div>
+                <motion.div 
+                  className="space-y-2"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <p className="text-sm text-foreground/60 uppercase tracking-wider">Status</p>
+                  <p className="font-semibold text-green-400 flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                    Available
+                  </p>
+                </motion.div>
               </div>
 
               {/* Skills */}
@@ -140,7 +203,17 @@ const AboutSection: React.FC = () => {
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                       transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                      className="glass-card px-4 py-2 rounded-xl text-sm font-medium"
+                      whileHover={{ 
+                        scale: 1.1, 
+                        y: -2,
+                        boxShadow: '0 5px 15px rgba(0,0,0,0.1)'
+                      }}
+                      className="glass-card px-4 py-2 rounded-xl text-sm font-medium cursor-pointer"
+                      style={{
+                        backdropFilter: 'blur(20px)',
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
+                      }}
                     >
                       {skill}
                     </motion.span>
@@ -156,9 +229,19 @@ const AboutSection: React.FC = () => {
               >
                 <motion.a
                   href="/resume.pdf"
-                  download="Alex_Morgan_Resume.pdf"
-                  className="inline-flex items-center gap-3 glass-card px-6 py-3 rounded-xl font-semibold glow-effect hover:bg-white/10 transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
+                  download="NR_Bhogyaan_Resume.pdf"
+                  className="inline-flex items-center gap-3 glass-card px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                  style={{
+                    backdropFilter: 'blur(20px)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                  }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -2,
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
+                  }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <Download className="w-5 h-5" />
@@ -181,12 +264,29 @@ const AboutSection: React.FC = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, delay: 1 + index * 0.1 }}
-                className="text-center glass-card p-6 rounded-2xl glow-effect magnetic-hover"
+                className="text-center glass-card p-6 rounded-2xl transition-all duration-300 cursor-pointer"
+                style={{
+                  backdropFilter: 'blur(20px)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -5,
+                  backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                  boxShadow: '0 15px 35px rgba(0,0,0,0.1)'
+                }}
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/20 rounded-xl mb-4">
+                <motion.div 
+                  className="inline-flex items-center justify-center w-12 h-12 bg-primary/20 rounded-xl mb-4"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.8 }}
+                >
                   <stat.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-2xl md:text-3xl font-bold gradient-text mb-2">{stat.value}</h3>
+                </motion.div>
+                <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">
+                  {stat.value}
+                </h3>
                 <p className="text-sm text-foreground/70">{stat.label}</p>
               </motion.div>
             ))}

@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import { ArrowDown, Download, Github, Linkedin, Twitter, Mail, Instagram } from 'lucide-react';
+import { ArrowDown, Download, Github, Linkedin, Twitter, Mail, Instagram, Phone } from 'lucide-react';
 
 const HomeSection = () => {
   const handleSmoothScroll = (targetId: string) => {
@@ -20,35 +20,28 @@ const HomeSection = () => {
   const socialLinks = [
     { 
       icon: Github, 
-      href: "https://github.com", 
+      href: "https://github.com/bhogyaannr", 
       label: "GitHub", 
       hoverColor: "#333",
       darkHoverColor: "#fff"
     },
     { 
       icon: Linkedin, 
-      href: "https://linkedin.com", 
+      href: "https://linkedin.com/in/bhogyaannr", 
       label: "LinkedIn", 
       hoverColor: "#0077b5",
       darkHoverColor: "#0077b5"
     },
     { 
-      icon: Twitter, 
-      href: "https://twitter.com", 
-      label: "Twitter", 
-      hoverColor: "#1da1f2",
-      darkHoverColor: "#1da1f2"
-    },
-    { 
-      icon: Instagram, 
-      href: "https://instagram.com", 
-      label: "Instagram", 
-      hoverColor: "#e4405f",
-      darkHoverColor: "#e4405f"
+      icon: Phone, 
+      href: "tel:+918870750574", 
+      label: "Phone", 
+      hoverColor: "#25d366",
+      darkHoverColor: "#25d366"
     },
     { 
       icon: Mail, 
-      href: "mailto:alex@example.com", 
+      href: "mailto:bhogyaannr@gmail.com", 
       label: "Email", 
       hoverColor: "#ea4335",
       darkHoverColor: "#ea4335"
@@ -125,7 +118,7 @@ const HomeSection = () => {
             >
               Hi, I'm{' '}
               <motion.span 
-                className="inline-block"
+                className="inline-block relative"
                 style={{
                   background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))',
                   backgroundSize: '200% 200%',
@@ -142,7 +135,7 @@ const HomeSection = () => {
                   repeat: Infinity,
                 }}
               >
-                Alex Morgan
+                NR Bhogyaan
               </motion.span>
             </motion.h1>
             
@@ -152,7 +145,7 @@ const HomeSection = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-2"
             >
-              Full Stack Developer
+              MERN Stack & Flutter Developer
             </motion.div>
             
             <motion.div
@@ -161,7 +154,7 @@ const HomeSection = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-lg md:text-xl text-muted-foreground/80"
             >
-              Building digital experiences with passion and precision
+              Building innovative web & mobile solutions with modern technologies
             </motion.div>
           </motion.div>
 
@@ -198,7 +191,7 @@ const HomeSection = () => {
             
             <motion.a
               href="/resume.pdf"
-              download
+              download="NR_Bhogyaan_Resume.pdf"
               className="group relative px-8 py-4 rounded-full font-semibold text-lg shadow-lg transition-all duration-300 flex items-center gap-2 overflow-hidden"
               style={{
                 background: 'linear-gradient(135deg, hsl(var(--accent)), hsl(var(--primary)))',
@@ -252,14 +245,13 @@ const HomeSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2 + index * 0.1 }}
                 onHoverStart={() => {
-                  // Dynamic hover color change
-                  const element = document.querySelector(`[aria-label="${social.label}"]`);
+                  const element = document.querySelector(`[aria-label="${social.label}"]`) as HTMLElement;
                   if (element) {
                     element.style.color = social.hoverColor;
                   }
                 }}
                 onHoverEnd={() => {
-                  const element = document.querySelector(`[aria-label="${social.label}"]`);
+                  const element = document.querySelector(`[aria-label="${social.label}"]`) as HTMLElement;
                   if (element) {
                     element.style.color = 'hsl(var(--muted-foreground))';
                   }
