@@ -1,6 +1,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowDown, Download, Github, Linkedin, Mail, Phone } from 'lucide-react';
+import ParticleBackground from '../ParticleBackground';
 
 const HomeSection = () => {
   const handleSmoothScroll = (targetId: string) => {
@@ -22,77 +23,34 @@ const HomeSection = () => {
       icon: Github, 
       href: "https://github.com/bhogyaannr", 
       label: "GitHub", 
-      hoverColor: "#333"
+      color: "text-gray-800 dark:text-gray-200"
     },
     { 
       icon: Linkedin, 
       href: "https://linkedin.com/in/bhogyaannr", 
       label: "LinkedIn", 
-      hoverColor: "#0077b5"
+      color: "text-blue-600 dark:text-blue-400"
     },
     { 
       icon: Phone, 
       href: "tel:+918870750574", 
       label: "Phone", 
-      hoverColor: "#25d366"
+      color: "text-green-600 dark:text-green-400"
     },
     { 
       icon: Mail, 
       href: "mailto:bhogyaannr@gmail.com", 
       label: "Email", 
-      hoverColor: "#ea4335"
+      color: "text-red-600 dark:text-red-400"
     }
   ];
 
   return (
     <section 
       id="home" 
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
-      style={{
-        background: 'linear-gradient(135deg, hsl(var(--background)) 0%, hsl(220 14.3% 97%) 100%)',
-      }}
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background"
     >
-      {/* Background Pattern */}
-      <div 
-        className="absolute inset-0 opacity-5 dark:opacity-10"
-        style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)',
-          backgroundSize: '20px 20px',
-        }}
-      ></div>
-      
-      {/* Floating Elements */}
-      <motion.div 
-        className="absolute top-20 left-10 w-32 h-32 rounded-full blur-xl"
-        style={{
-          background: 'hsl(var(--primary) / 0.1)',
-        }}
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.6, 0.3],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div 
-        className="absolute bottom-20 right-10 w-40 h-40 rounded-full blur-xl"
-        style={{
-          background: 'hsl(var(--accent) / 0.1)',
-        }}
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.4, 0.7, 0.4],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
-        }}
-      />
+      <ParticleBackground />
       
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
@@ -104,7 +62,7 @@ const HomeSection = () => {
             className="mb-6"
           >
             <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 font-space-grotesk"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 font-space-grotesk text-foreground"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -136,8 +94,7 @@ const HomeSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl lg:text-3xl mb-2"
-              style={{ color: 'hsl(var(--muted-foreground))' }}
+              className="text-xl md:text-2xl lg:text-3xl mb-2 text-muted-foreground"
             >
               MERN Stack & Flutter Developer
             </motion.div>
@@ -146,8 +103,7 @@ const HomeSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-lg md:text-xl"
-              style={{ color: 'hsl(var(--muted-foreground))/80%' }}
+              className="text-lg md:text-xl text-muted-foreground/80"
             >
               Building innovative web & mobile solutions with modern technologies
             </motion.div>
@@ -176,7 +132,7 @@ const HomeSection = () => {
               <Mail className="w-5 h-5 relative z-10" />
               <span className="relative z-10">Get In Touch</span>
               <motion.div
-                className="absolute inset-0 bg-white/20"
+                className="absolute inset-0 bg-white/20 rounded-full"
                 initial={{ x: '-100%' }}
                 whileHover={{ x: '100%' }}
                 transition={{ duration: 0.6 }}
@@ -200,7 +156,7 @@ const HomeSection = () => {
               <Download className="w-5 h-5 relative z-10" />
               <span className="relative z-10">Download Resume</span>
               <motion.div
-                className="absolute inset-0 bg-white/20"
+                className="absolute inset-0 bg-white/20 rounded-full"
                 initial={{ x: '-100%' }}
                 whileHover={{ x: '100%' }}
                 transition={{ duration: 0.6 }}
@@ -221,18 +177,10 @@ const HomeSection = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative p-3 rounded-full transition-all duration-300 no-underline"
-                style={{
-                  backdropFilter: 'blur(20px)',
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  color: 'hsl(var(--muted-foreground))',
-                }}
+                className="group relative p-4 rounded-2xl transition-all duration-300 no-underline glass-card hover:shadow-xl"
                 whileHover={{ 
                   y: -3,
                   scale: 1.1,
-                  boxShadow: '0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-                  color: social.hoverColor,
                 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 20 }}
@@ -240,7 +188,7 @@ const HomeSection = () => {
                 transition={{ delay: 1.2 + index * 0.1 }}
                 aria-label={social.label}
               >
-                <social.icon className="w-6 h-6 transition-colors duration-300" />
+                <social.icon className={`w-6 h-6 transition-colors duration-300 ${social.color} group-hover:scale-110`} />
                 <span className="sr-only">{social.label}</span>
               </motion.a>
             ))}
@@ -255,11 +203,9 @@ const HomeSection = () => {
           >
             <motion.button
               onClick={() => handleSmoothScroll('about')}
-              className="flex flex-col items-center gap-2 transition-colors group cursor-pointer bg-transparent border-none"
-              style={{ color: 'hsl(var(--muted-foreground))' }}
+              className="flex flex-col items-center gap-2 transition-colors group cursor-pointer bg-transparent border-none text-muted-foreground hover:text-foreground"
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              whileHover={{ color: 'hsl(var(--foreground))' }}
             >
               <span className="text-sm font-medium">Scroll to explore</span>
               <motion.div

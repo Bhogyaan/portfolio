@@ -74,32 +74,33 @@ const Navbar = () => {
       animate={{ opacity: 1, y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? 'backdrop-blur-xl bg-white/90 dark:bg-gray-900/90 mx-4 mt-4 rounded-2xl shadow-2xl border border-white/20 dark:border-gray-800/50' 
+          ? 'backdrop-blur-xl bg-white/90 dark:bg-gray-900/90 mx-2 lg:mx-4 mt-2 lg:mt-4 rounded-3xl shadow-2xl border border-white/20 dark:border-gray-800/50' 
           : 'bg-transparent'
       }`}
       style={{
         backdropFilter: scrolled ? 'blur(20px)' : 'none',
       }}
     >
-      <nav className="container mx-auto flex items-center justify-between p-4 md:p-6">
-        {/* Logo */}
+      <nav className="container mx-auto flex items-center justify-between px-4 py-3 lg:px-6 lg:py-4 max-w-7xl">
+        {/* Logo - Fixed width to prevent layout shift */}
         <motion.button 
           onClick={() => handleNavClick('#home')}
-          className="flex items-center gap-2 text-xl md:text-2xl font-bold font-space-grotesk z-50 group bg-transparent border-none cursor-pointer"
+          className="flex items-center gap-2 text-lg lg:text-xl font-bold font-space-grotesk z-50 group bg-transparent border-none cursor-pointer min-w-[140px]"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           <motion.div
-            className="p-2 rounded-xl text-white"
+            className="p-2 rounded-xl text-white flex-shrink-0"
             style={{
               background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
             }}
             whileHover={{ rotate: 360 }}
             transition={{ duration: 0.5 }}
           >
-            <Sparkles className="w-5 h-5" />
+            <Sparkles className="w-4 h-4 lg:w-5 lg:h-5" />
           </motion.div>
           <span
+            className="truncate"
             style={{
               background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
               WebkitBackgroundClip: 'text',
@@ -111,55 +112,58 @@ const Navbar = () => {
           </span>
         </motion.button>
 
-        {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-2">
+        {/* Desktop Navigation - Improved responsiveness */}
+        <div className="hidden lg:flex items-center justify-center flex-1 px-4">
           <div 
-            className="flex items-center gap-1 p-2 rounded-full"
+            className="flex items-center gap-1 p-2 rounded-full overflow-hidden"
             style={{
               backdropFilter: 'blur(20px)',
               backgroundColor: 'rgba(255, 255, 255, 0.1)',
               border: '1px solid rgba(255, 255, 255, 0.2)',
+              maxWidth: '100%',
             }}
           >
-            {navItems.map((item) => {
-              const IconComponent = item.icon;
-              return (
-                <motion.button 
-                  key={item.name}
-                  onClick={() => handleNavClick(item.href)}
-                  className={`relative px-4 py-2 rounded-full font-medium transition-all duration-300 text-sm flex items-center gap-2 bg-transparent border-none cursor-pointer ${
-                    activeSection === item.href.substring(1) 
-                      ? 'text-white' 
-                      : 'text-foreground/70 hover:text-foreground'
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  style={{
-                    position: 'relative',
-                    zIndex: 2,
-                  }}
-                >
-                  {activeSection === item.href.substring(1) && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute inset-0 rounded-full"
-                      style={{
-                        background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
-                        zIndex: -1,
-                      }}
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
-                  <IconComponent className="w-4 h-4 relative z-10" />
-                  <span className="relative z-10">{item.name}</span>
-                </motion.button>
-              );
-            })}
+            <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
+              {navItems.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <motion.button 
+                    key={item.name}
+                    onClick={() => handleNavClick(item.href)}
+                    className={`relative px-3 py-2 rounded-full font-medium transition-all duration-300 text-sm flex items-center gap-2 bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0 ${
+                      activeSection === item.href.substring(1) 
+                        ? 'text-white' 
+                        : 'text-foreground/70 hover:text-foreground'
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{
+                      position: 'relative',
+                      zIndex: 2,
+                    }}
+                  >
+                    {activeSection === item.href.substring(1) && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute inset-0 rounded-full"
+                        style={{
+                          background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
+                          zIndex: -1,
+                        }}
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                    <IconComponent className="w-4 h-4 relative z-10 flex-shrink-0" />
+                    <span className="relative z-10 hidden xl:inline">{item.name}</span>
+                  </motion.button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
         {/* Right Side - Theme Toggle and Mobile Menu */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 min-w-[100px] justify-end">
           {/* Theme Toggle */}
           <motion.button 
             onClick={toggleTheme} 
@@ -260,7 +264,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto', y: 0 }}
             exit={{ opacity: 0, height: 0, y: -20 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="lg:hidden border-t border-white/10 rounded-b-2xl mx-4 overflow-hidden shadow-xl"
+            className="lg:hidden border-t border-white/10 rounded-b-3xl mx-2 overflow-hidden shadow-xl"
             style={{
               backdropFilter: 'blur(20px)',
               backgroundColor: theme === 'dark' ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.95)',
@@ -273,7 +277,7 @@ const Navbar = () => {
                   <motion.button
                     key={item.name}
                     onClick={() => handleNavClick(item.href)}
-                    className={`w-full text-left flex items-center gap-3 px-6 py-4 rounded-xl font-medium transition-all duration-300 group relative overflow-hidden bg-transparent border-none cursor-pointer ${
+                    className={`w-full text-left flex items-center gap-3 px-6 py-4 rounded-2xl font-medium transition-all duration-300 group relative overflow-hidden bg-transparent border-none cursor-pointer ${
                       activeSection === item.href.substring(1)
                         ? 'text-white'
                         : 'text-foreground/70 hover:text-foreground'
@@ -289,7 +293,7 @@ const Navbar = () => {
                     {activeSection === item.href.substring(1) && (
                       <motion.div
                         layoutId="activeMobileTab"
-                        className="absolute inset-0 rounded-xl"
+                        className="absolute inset-0 rounded-2xl"
                         style={{
                           background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
                           zIndex: -1,
@@ -297,7 +301,7 @@ const Navbar = () => {
                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                       />
                     )}
-                    <IconComponent className="w-5 h-5 relative z-10" />
+                    <IconComponent className="w-5 h-5 relative z-10 flex-shrink-0" />
                     <span className="relative z-10">{item.name}</span>
                   </motion.button>
                 );
