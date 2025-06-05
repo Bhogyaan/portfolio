@@ -50,10 +50,8 @@ const Navbar = () => {
   }, []);
 
   const handleNavClick = (href: string) => {
-    // Close mobile menu first
     setMobileMenuOpen(false);
     
-    // Small delay to ensure menu closes before scrolling
     setTimeout(() => {
       const id = href.substring(1);
       const element = document.getElementById(id);
@@ -90,12 +88,6 @@ const Navbar = () => {
           className="flex items-center gap-2 text-xl md:text-2xl font-bold font-space-grotesk z-50 group bg-transparent border-none cursor-pointer"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          style={{
-            background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}
         >
           <motion.div
             className="p-2 rounded-xl text-white"
@@ -107,7 +99,16 @@ const Navbar = () => {
           >
             <Sparkles className="w-5 h-5" />
           </motion.div>
-          NR Bhogyaan
+          <span
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
+            NR Bhogyaan
+          </span>
         </motion.button>
 
         {/* Desktop Navigation */}
@@ -262,10 +263,7 @@ const Navbar = () => {
             className="lg:hidden border-t border-white/10 rounded-b-2xl mx-4 overflow-hidden shadow-xl"
             style={{
               backdropFilter: 'blur(20px)',
-              backgroundColor: 'rgba(255, 255, 255, 0.95)',
-              ...(theme === 'dark' && {
-                backgroundColor: 'rgba(15, 23, 42, 0.95)',
-              }),
+              backgroundColor: theme === 'dark' ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.95)',
             }}
           >
             <div className="p-6 space-y-2">

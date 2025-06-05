@@ -22,7 +22,7 @@ const HomeSection = () => {
       icon: Github, 
       href: "https://github.com/bhogyaannr", 
       label: "GitHub", 
-      hoverColor: "hsl(var(--foreground))"
+      hoverColor: "#333"
     },
     { 
       icon: Linkedin, 
@@ -232,6 +232,7 @@ const HomeSection = () => {
                   y: -3,
                   scale: 1.1,
                   boxShadow: '0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                  color: social.hoverColor,
                 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 20 }}
@@ -239,12 +240,7 @@ const HomeSection = () => {
                 transition={{ delay: 1.2 + index * 0.1 }}
                 aria-label={social.label}
               >
-                <motion.div
-                  whileHover={{ color: social.hoverColor }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <social.icon className="w-6 h-6 transition-colors duration-300" />
-                </motion.div>
+                <social.icon className="w-6 h-6 transition-colors duration-300" />
                 <span className="sr-only">{social.label}</span>
               </motion.a>
             ))}
