@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import { ArrowDown, Download, Github, Linkedin, Twitter, Mail, Instagram, Phone } from 'lucide-react';
+import { ArrowDown, Download, Github, Linkedin, Mail, Phone } from 'lucide-react';
 
 const HomeSection = () => {
   const handleSmoothScroll = (targetId: string) => {
@@ -22,29 +22,25 @@ const HomeSection = () => {
       icon: Github, 
       href: "https://github.com/bhogyaannr", 
       label: "GitHub", 
-      hoverColor: "#333",
-      darkHoverColor: "#fff"
+      hoverColor: "hsl(var(--foreground))"
     },
     { 
       icon: Linkedin, 
       href: "https://linkedin.com/in/bhogyaannr", 
       label: "LinkedIn", 
-      hoverColor: "#0077b5",
-      darkHoverColor: "#0077b5"
+      hoverColor: "#0077b5"
     },
     { 
       icon: Phone, 
       href: "tel:+918870750574", 
       label: "Phone", 
-      hoverColor: "#25d366",
-      darkHoverColor: "#25d366"
+      hoverColor: "#25d366"
     },
     { 
       icon: Mail, 
       href: "mailto:bhogyaannr@gmail.com", 
       label: "Email", 
-      hoverColor: "#ea4335",
-      darkHoverColor: "#ea4335"
+      hoverColor: "#ea4335"
     }
   ];
 
@@ -54,9 +50,6 @@ const HomeSection = () => {
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
       style={{
         background: 'linear-gradient(135deg, hsl(var(--background)) 0%, hsl(220 14.3% 97%) 100%)',
-        ...(document.documentElement.classList.contains('dark') && {
-          background: 'linear-gradient(135deg, hsl(var(--background)) 0%, hsl(240 10% 6%) 100%)',
-        }),
       }}
     >
       {/* Background Pattern */}
@@ -143,7 +136,8 @@ const HomeSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-2"
+              className="text-xl md:text-2xl lg:text-3xl mb-2"
+              style={{ color: 'hsl(var(--muted-foreground))' }}
             >
               MERN Stack & Flutter Developer
             </motion.div>
@@ -152,7 +146,8 @@ const HomeSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-lg md:text-xl text-muted-foreground/80"
+              className="text-lg md:text-xl"
+              style={{ color: 'hsl(var(--muted-foreground))/80%' }}
             >
               Building innovative web & mobile solutions with modern technologies
             </motion.div>
@@ -167,10 +162,9 @@ const HomeSection = () => {
           >
             <motion.button
               onClick={() => handleSmoothScroll('contact')}
-              className="group relative px-8 py-4 rounded-full font-semibold text-lg shadow-lg transition-all duration-300 flex items-center gap-2 overflow-hidden"
+              className="group relative px-8 py-4 rounded-full font-semibold text-lg shadow-lg transition-all duration-300 flex items-center gap-2 overflow-hidden text-white border-none cursor-pointer"
               style={{
                 background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
-                color: 'white',
               }}
               whileHover={{ 
                 scale: 1.05, 
@@ -192,10 +186,9 @@ const HomeSection = () => {
             <motion.a
               href="/resume.pdf"
               download="NR_Bhogyaan_Resume.pdf"
-              className="group relative px-8 py-4 rounded-full font-semibold text-lg shadow-lg transition-all duration-300 flex items-center gap-2 overflow-hidden"
+              className="group relative px-8 py-4 rounded-full font-semibold text-lg shadow-lg transition-all duration-300 flex items-center gap-2 overflow-hidden text-white no-underline"
               style={{
                 background: 'linear-gradient(135deg, hsl(var(--accent)), hsl(var(--primary)))',
-                color: 'white',
               }}
               whileHover={{ 
                 scale: 1.05, 
@@ -228,7 +221,7 @@ const HomeSection = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative p-3 rounded-full transition-all duration-300"
+                className="group relative p-3 rounded-full transition-all duration-300 no-underline"
                 style={{
                   backdropFilter: 'blur(20px)',
                   backgroundColor: 'rgba(255, 255, 255, 0.1)',
@@ -244,21 +237,14 @@ const HomeSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2 + index * 0.1 }}
-                onHoverStart={() => {
-                  const element = document.querySelector(`[aria-label="${social.label}"]`) as HTMLElement;
-                  if (element) {
-                    element.style.color = social.hoverColor;
-                  }
-                }}
-                onHoverEnd={() => {
-                  const element = document.querySelector(`[aria-label="${social.label}"]`) as HTMLElement;
-                  if (element) {
-                    element.style.color = 'hsl(var(--muted-foreground))';
-                  }
-                }}
                 aria-label={social.label}
               >
-                <social.icon className="w-6 h-6 transition-colors duration-300" />
+                <motion.div
+                  whileHover={{ color: social.hoverColor }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <social.icon className="w-6 h-6 transition-colors duration-300" />
+                </motion.div>
                 <span className="sr-only">{social.label}</span>
               </motion.a>
             ))}
@@ -273,17 +259,19 @@ const HomeSection = () => {
           >
             <motion.button
               onClick={() => handleSmoothScroll('about')}
-              className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors group cursor-pointer bg-transparent border-none"
+              className="flex flex-col items-center gap-2 transition-colors group cursor-pointer bg-transparent border-none"
+              style={{ color: 'hsl(var(--muted-foreground))' }}
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              whileHover={{ color: 'hsl(var(--foreground))' }}
             >
               <span className="text-sm font-medium">Scroll to explore</span>
-              <ArrowDown 
-                className="w-5 h-5 group-hover:text-primary transition-colors" 
-                style={{
-                  color: 'inherit',
-                }}
-              />
+              <motion.div
+                whileHover={{ color: 'hsl(var(--primary))' }}
+                transition={{ duration: 0.3 }}
+              >
+                <ArrowDown className="w-5 h-5 transition-colors" />
+              </motion.div>
             </motion.button>
           </motion.div>
         </div>

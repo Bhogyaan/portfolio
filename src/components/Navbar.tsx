@@ -2,21 +2,22 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Moon, Menu, X, Sparkles } from 'lucide-react';
+import { Sun, Moon, Menu, X, Sparkles, Home, User, GraduationCap, Code, Briefcase, Award, Mail } from 'lucide-react';
 
 interface NavItem {
   name: string;
   href: string;
+  icon: any;
 }
 
 const navItems: NavItem[] = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Education', href: '#education' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Certificates', href: '#certificates' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Home', href: '#home', icon: Home },
+  { name: 'About', href: '#about', icon: User },
+  { name: 'Education', href: '#education', icon: GraduationCap },
+  { name: 'Skills', href: '#skills', icon: Code },
+  { name: 'Projects', href: '#projects', icon: Briefcase },
+  { name: 'Certificates', href: '#certificates', icon: Award },
+  { name: 'Contact', href: '#contact', icon: Mail },
 ];
 
 const Navbar = () => {
@@ -49,22 +50,24 @@ const Navbar = () => {
   }, []);
 
   const handleNavClick = (href: string) => {
-    // Close mobile menu
+    // Close mobile menu first
     setMobileMenuOpen(false);
     
-    // Handle navigation
-    const id = href.substring(1);
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80; // Account for navbar height
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+    // Small delay to ensure menu closes before scrolling
+    setTimeout(() => {
+      const id = href.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        const offset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
   };
 
   return (
@@ -82,13 +85,9 @@ const Navbar = () => {
     >
       <nav className="container mx-auto flex items-center justify-between p-4 md:p-6">
         {/* Logo */}
-        <motion.a 
-          href="#home" 
-          onClick={(e) => {
-            e.preventDefault();
-            handleNavClick('#home');
-          }}
-          className="flex items-center gap-2 text-xl md:text-2xl font-bold font-space-grotesk z-50 group"
+        <motion.button 
+          onClick={() => handleNavClick('#home')}
+          className="flex items-center gap-2 text-xl md:text-2xl font-bold font-space-grotesk z-50 group bg-transparent border-none cursor-pointer"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           style={{
@@ -108,8 +107,8 @@ const Navbar = () => {
           >
             <Sparkles className="w-5 h-5" />
           </motion.div>
-          Alex Morgan
-        </motion.a>
+          NR Bhogyaan
+        </motion.button>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-2">
@@ -121,40 +120,40 @@ const Navbar = () => {
               border: '1px solid rgba(255, 255, 255, 0.2)',
             }}
           >
-            {navItems.map((item) => (
-              <motion.a 
-                key={item.name}
-                href={item.href} 
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item.href);
-                }}
-                className={`relative px-4 py-2 rounded-full font-medium transition-all duration-300 text-sm ${
-                  activeSection === item.href.substring(1) 
-                    ? 'text-white' 
-                    : 'text-foreground/70 hover:text-foreground'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                style={{
-                  position: 'relative',
-                  zIndex: 2,
-                }}
-              >
-                {activeSection === item.href.substring(1) && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 rounded-full"
-                    style={{
-                      background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
-                      zIndex: -1,
-                    }}
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-                <span className="relative z-10">{item.name}</span>
-              </motion.a>
-            ))}
+            {navItems.map((item) => {
+              const IconComponent = item.icon;
+              return (
+                <motion.button 
+                  key={item.name}
+                  onClick={() => handleNavClick(item.href)}
+                  className={`relative px-4 py-2 rounded-full font-medium transition-all duration-300 text-sm flex items-center gap-2 bg-transparent border-none cursor-pointer ${
+                    activeSection === item.href.substring(1) 
+                      ? 'text-white' 
+                      : 'text-foreground/70 hover:text-foreground'
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  style={{
+                    position: 'relative',
+                    zIndex: 2,
+                  }}
+                >
+                  {activeSection === item.href.substring(1) && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
+                        zIndex: -1,
+                      }}
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  <IconComponent className="w-4 h-4 relative z-10" />
+                  <span className="relative z-10">{item.name}</span>
+                </motion.button>
+              );
+            })}
           </div>
         </div>
 
@@ -163,7 +162,7 @@ const Navbar = () => {
           {/* Theme Toggle */}
           <motion.button 
             onClick={toggleTheme} 
-            className="relative p-3 rounded-full transition-all duration-300 group overflow-hidden"
+            className="relative p-3 rounded-full transition-all duration-300 group overflow-hidden bg-transparent border-none cursor-pointer"
             style={{
               backdropFilter: 'blur(20px)',
               backgroundColor: 'rgba(255, 255, 255, 0.1)',
@@ -208,7 +207,7 @@ const Navbar = () => {
           {/* Mobile Menu Toggle */}
           <motion.button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden relative p-3 rounded-full transition-all duration-300 group overflow-hidden"
+            className="lg:hidden relative p-3 rounded-full transition-all duration-300 group overflow-hidden bg-transparent border-none cursor-pointer"
             style={{
               backdropFilter: 'blur(20px)',
               backgroundColor: 'rgba(255, 255, 255, 0.1)',
@@ -270,41 +269,41 @@ const Navbar = () => {
             }}
           >
             <div className="p-6 space-y-2">
-              {navItems.map((item, index) => (
-                <motion.a
-                  key={item.name}
-                  href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(item.href);
-                  }}
-                  className={`block px-6 py-4 rounded-xl font-medium transition-all duration-300 group relative overflow-hidden ${
-                    activeSection === item.href.substring(1)
-                      ? 'text-white'
-                      : 'text-foreground/70 hover:text-foreground'
-                  }`}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ x: 8 }}
-                  style={{
-                    position: 'relative',
-                  }}
-                >
-                  {activeSection === item.href.substring(1) && (
-                    <motion.div
-                      layoutId="activeMobileTab"
-                      className="absolute inset-0 rounded-xl"
-                      style={{
-                        background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
-                        zIndex: -1,
-                      }}
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
-                  <span className="relative z-10">{item.name}</span>
-                </motion.a>
-              ))}
+              {navItems.map((item, index) => {
+                const IconComponent = item.icon;
+                return (
+                  <motion.button
+                    key={item.name}
+                    onClick={() => handleNavClick(item.href)}
+                    className={`w-full text-left flex items-center gap-3 px-6 py-4 rounded-xl font-medium transition-all duration-300 group relative overflow-hidden bg-transparent border-none cursor-pointer ${
+                      activeSection === item.href.substring(1)
+                        ? 'text-white'
+                        : 'text-foreground/70 hover:text-foreground'
+                    }`}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ x: 8 }}
+                    style={{
+                      position: 'relative',
+                    }}
+                  >
+                    {activeSection === item.href.substring(1) && (
+                      <motion.div
+                        layoutId="activeMobileTab"
+                        className="absolute inset-0 rounded-xl"
+                        style={{
+                          background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
+                          zIndex: -1,
+                        }}
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                    <IconComponent className="w-5 h-5 relative z-10" />
+                    <span className="relative z-10">{item.name}</span>
+                  </motion.button>
+                );
+              })}
             </div>
           </motion.div>
         )}
