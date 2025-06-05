@@ -78,6 +78,8 @@ const LoadingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
           className="absolute"
           style={{
             color: theme === 'dark' ? 'hsl(var(--primary))/20%' : 'hsl(var(--primary))/30%',
+            left: `${20 + index * 15}%`,
+            top: `${20 + index * 10}%`
           }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{ 
@@ -91,10 +93,6 @@ const LoadingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
             delay,
             repeat: Infinity,
             ease: "easeInOut"
-          }}
-          style={{
-            left: `${20 + index * 15}%`,
-            top: `${20 + index * 10}%`
           }}
         >
           <Icon className="w-8 h-8" />
