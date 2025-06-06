@@ -6,9 +6,9 @@ import ParticleBackground from "@/components/ParticleBackground";
 import HomeSection from "@/components/sections/HomeSection";
 import AboutSection from "@/components/sections/AboutSection";
 import EducationSection from "@/components/sections/EducationSection";
+import ExperienceSection from "@/components/sections/ExperienceSection";
 import SkillsSection from "@/components/sections/SkillsSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
-import CertificatesSection from "@/components/sections/CertificatesSection";
 import ContactSection from "@/components/sections/ContactSection";
 
 const PortfolioPage = () => {
@@ -67,9 +67,9 @@ const PortfolioPage = () => {
         <HomeSection />
         <AboutSection />
         <EducationSection />
+        <ExperienceSection />
         <SkillsSection />
         <ProjectsSection />
-        <CertificatesSection />
         <ContactSection />
       </main>
       

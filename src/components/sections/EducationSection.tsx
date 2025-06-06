@@ -10,7 +10,7 @@ interface EducationItem {
   location: string;
   description: string;
   achievements: string[];
-  gpa?: string;
+  cgpa?: string;
   status?: string;
 }
 
@@ -18,9 +18,10 @@ const educationData: EducationItem[] = [
   {
     degree: "Master of Computer Application",
     institution: "KLN College of Engineering",
-    period: "2023 - 2025",
-    location: "Tamil Nadu, India",
+    period: "Sep 2023 - Jun 2025",
+    location: "Sivaganga, TN",
     status: "Currently Pursuing",
+    cgpa: "8.1/10",
     description: "Specialized in advanced computer science concepts, software engineering, and modern development practices with focus on full-stack development and mobile applications.",
     achievements: [
       "MERN Stack Specialization",
@@ -30,10 +31,11 @@ const educationData: EducationItem[] = [
     ]
   },
   {
-    degree: "Bachelor of Science in Computer Science",
+    degree: "Bachelor of Information Technology",
     institution: "KLN Arts and Science College",
-    period: "2019 - 2022",
-    location: "Tamil Nadu, India",
+    period: "Jun 2019 - Apr 2022",
+    location: "Sivaganga, TN",
+    cgpa: "7.9/10",
     description: "Comprehensive study of computer science fundamentals including programming, data structures, algorithms, and web technologies.",
     achievements: [
       "Strong Foundation in Programming",
@@ -123,15 +125,9 @@ const EducationSection: React.FC = () => {
                 }`}>
                   <motion.div
                     className="glass-card p-4 md:p-6 lg:p-8 rounded-2xl transition-all duration-300 cursor-pointer"
-                    style={{
-                      backdropFilter: 'blur(20px)',
-                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
-                    }}
                     whileHover={{ 
                       scale: 1.02, 
                       y: -5,
-                      backgroundColor: 'rgba(255, 255, 255, 0.15)',
                       boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
                     }}
                   >
@@ -163,6 +159,17 @@ const EducationSection: React.FC = () => {
                       >
                         <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                         {item.status}
+                      </motion.div>
+                    )}
+
+                    {/* CGPA */}
+                    {item.cgpa && (
+                      <motion.div 
+                        className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs font-medium mb-4 ml-2"
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        <Award className="w-3 h-3" />
+                        CGPA: {item.cgpa}
                       </motion.div>
                     )}
 

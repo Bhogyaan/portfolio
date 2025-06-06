@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import { ArrowDown, Download, Github, Linkedin, Mail, Phone } from 'lucide-react';
+import { ArrowDown, Download, Github, Mail, Phone, Instagram, Twitter } from 'lucide-react';
 import ParticleBackground from '../ParticleBackground';
 
 const HomeSection = () => {
@@ -26,9 +26,15 @@ const HomeSection = () => {
       color: "text-gray-800 dark:text-gray-200"
     },
     { 
-      icon: Linkedin, 
-      href: "https://linkedin.com/in/bhogyaannr", 
-      label: "LinkedIn", 
+      icon: Instagram, 
+      href: "https://instagram.com/bhogyaannr", 
+      label: "Instagram", 
+      color: "text-pink-600 dark:text-pink-400"
+    },
+    { 
+      icon: Twitter, 
+      href: "https://twitter.com/bhogyaannr", 
+      label: "Twitter", 
       color: "text-blue-600 dark:text-blue-400"
     },
     { 
@@ -48,7 +54,7 @@ const HomeSection = () => {
   return (
     <section 
       id="home" 
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
       <ParticleBackground />
       
@@ -86,7 +92,7 @@ const HomeSection = () => {
                   repeat: Infinity,
                 }}
               >
-                NR Bhogyaan
+                N R Bhogyaan
               </motion.span>
             </motion.h1>
             
@@ -96,16 +102,25 @@ const HomeSection = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl md:text-2xl lg:text-3xl mb-2 text-muted-foreground"
             >
-              MERN Stack & Flutter Developer
+              Front End Developer & MERN Stack Developer
             </motion.div>
             
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-lg md:text-xl text-muted-foreground/80"
+              className="text-lg md:text-xl text-muted-foreground/80 mb-4"
             >
               Building innovative web & mobile solutions with modern technologies
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="text-base md:text-lg text-muted-foreground/70"
+            >
+              📍 Madurai, TN | 📧 bhogyaannr@gmail.com | 📱 +91 8870750574
             </motion.div>
           </motion.div>
 
@@ -118,7 +133,7 @@ const HomeSection = () => {
           >
             <motion.button
               onClick={() => handleSmoothScroll('contact')}
-              className="group relative px-8 py-4 rounded-full font-semibold text-lg shadow-lg transition-all duration-300 flex items-center gap-2 overflow-hidden text-white border-none cursor-pointer"
+              className="group relative px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg transition-all duration-300 flex items-center gap-2 overflow-hidden text-white border-none cursor-pointer"
               style={{
                 background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
               }}
@@ -132,7 +147,7 @@ const HomeSection = () => {
               <Mail className="w-5 h-5 relative z-10" />
               <span className="relative z-10">Get In Touch</span>
               <motion.div
-                className="absolute inset-0 bg-white/20 rounded-full"
+                className="absolute inset-0 bg-white/20 rounded-2xl"
                 initial={{ x: '-100%' }}
                 whileHover={{ x: '100%' }}
                 transition={{ duration: 0.6 }}
@@ -142,7 +157,7 @@ const HomeSection = () => {
             <motion.a
               href="/resume.pdf"
               download="NR_Bhogyaan_Resume.pdf"
-              className="group relative px-8 py-4 rounded-full font-semibold text-lg shadow-lg transition-all duration-300 flex items-center gap-2 overflow-hidden text-white no-underline"
+              className="group relative px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg transition-all duration-300 flex items-center gap-2 overflow-hidden text-white no-underline"
               style={{
                 background: 'linear-gradient(135deg, hsl(var(--accent)), hsl(var(--primary)))',
               }}
@@ -156,7 +171,7 @@ const HomeSection = () => {
               <Download className="w-5 h-5 relative z-10" />
               <span className="relative z-10">Download Resume</span>
               <motion.div
-                className="absolute inset-0 bg-white/20 rounded-full"
+                className="absolute inset-0 bg-white/20 rounded-2xl"
                 initial={{ x: '-100%' }}
                 whileHover={{ x: '100%' }}
                 transition={{ duration: 0.6 }}
