@@ -26,14 +26,14 @@ const AboutSection: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="section-padding relative overflow-hidden">
+    <section id="about" className="py-12 md:py-16 lg:py-20 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/4 left-0 w-64 h-64 md:w-96 md:h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-0 w-48 h-48 md:w-64 md:h-64 bg-accent/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
-      <div className="container mx-auto relative z-10" ref={ref}>
+      <div className="container mx-auto px-4 relative z-10" ref={ref}>
         <motion.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : { opacity: 0 }}
@@ -44,20 +44,20 @@ const AboutSection: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center mb-12"
+            className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
               About <span 
                 className="inline-block bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient"
                 style={{ backgroundSize: '200% 200%' }}
               >Me</span>
             </h2>
-            <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-foreground/70 max-w-2xl mx-auto">
               Passionate developer crafting innovative digital solutions with modern technologies.
             </p>
           </motion.div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center mb-12 md:mb-16">
             {/* Profile Image - Reduced size */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -65,7 +65,7 @@ const AboutSection: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="relative"
             >
-              <div className="relative w-full max-w-sm mx-auto">
+              <div className="relative w-full max-w-xs md:max-w-sm mx-auto">
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full transform rotate-6"
                   whileHover={{ rotate: 12, scale: 1.05 }}
@@ -104,7 +104,7 @@ const AboutSection: React.FC = () => {
                     border: '1px solid rgba(255, 255, 255, 0.2)',
                   }}
                 >
-                  <Code className="w-5 h-5 text-primary" />
+                  <Code className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                 </motion.div>
                 <motion.div 
                   className="absolute -bottom-3 -left-3 glass-card p-2 rounded-lg"
@@ -116,7 +116,7 @@ const AboutSection: React.FC = () => {
                     border: '1px solid rgba(255, 255, 255, 0.2)',
                   }}
                 >
-                  <GraduationCap className="w-5 h-5 text-accent" />
+                  <GraduationCap className="w-4 h-4 md:w-5 md:h-5 text-accent" />
                 </motion.div>
               </div>
             </motion.div>
@@ -126,15 +126,15 @@ const AboutSection: React.FC = () => {
               initial={{ opacity: 0, x: 50 }}
               animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="space-y-6"
+              className="space-y-4 md:space-y-6"
             >
-              <div className="space-y-4">
-                <h3 className="text-2xl md:text-3xl font-bold">
+              <div className="space-y-3 md:space-y-4">
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
                   Full Stack Developer & <span 
                     className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
                   >Tech Enthusiast</span>
                 </h3>
-                <div className="space-y-3 text-base text-foreground/80">
+                <div className="space-y-2 md:space-y-3 text-sm md:text-base text-foreground/80">
                   <p>
                     Hello! I'm NR Bhogyaan, a passionate Computer Science postgraduate with expertise in 
                     MERN stack and Flutter development. Currently pursuing my Master's in Computer Applications 
@@ -152,41 +152,41 @@ const AboutSection: React.FC = () => {
               </div>
 
               {/* Quick Info */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3 md:gap-4">
                 <motion.div 
-                  className="space-y-2"
+                  className="space-y-1 md:space-y-2"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                 >
                   <p className="text-xs text-foreground/60 uppercase tracking-wider">Name</p>
-                  <p className="font-semibold">NR Bhogyaan</p>
+                  <p className="font-semibold text-sm md:text-base">NR Bhogyaan</p>
                 </motion.div>
                 <motion.div 
-                  className="space-y-2"
+                  className="space-y-1 md:space-y-2"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                 >
                   <p className="text-xs text-foreground/60 uppercase tracking-wider">Location</p>
-                  <p className="font-semibold flex items-center gap-1">
-                    <MapPin className="w-4 h-4" />
+                  <p className="font-semibold text-sm md:text-base flex items-center gap-1">
+                    <MapPin className="w-3 h-3 md:w-4 md:h-4" />
                     Madurai, TN
                   </p>
                 </motion.div>
                 <motion.div 
-                  className="space-y-2"
+                  className="space-y-1 md:space-y-2"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                 >
                   <p className="text-xs text-foreground/60 uppercase tracking-wider">Experience</p>
-                  <p className="font-semibold">3+ Years</p>
+                  <p className="font-semibold text-sm md:text-base">3+ Years</p>
                 </motion.div>
                 <motion.div 
-                  className="space-y-2"
+                  className="space-y-1 md:space-y-2"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                 >
                   <p className="text-xs text-foreground/60 uppercase tracking-wider">Status</p>
-                  <p className="font-semibold text-green-400 flex items-center gap-2">
+                  <p className="font-semibold text-green-400 flex items-center gap-2 text-sm md:text-base">
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                     Available
                   </p>
@@ -194,8 +194,8 @@ const AboutSection: React.FC = () => {
               </div>
 
               {/* Skills */}
-              <div className="space-y-3">
-                <h4 className="text-lg font-semibold">Core Expertise</h4>
+              <div className="space-y-2 md:space-y-3">
+                <h4 className="text-base md:text-lg font-semibold">Core Expertise</h4>
                 <div className="flex flex-wrap gap-2">
                   {skills.map((skill, index) => (
                     <motion.span
@@ -208,7 +208,7 @@ const AboutSection: React.FC = () => {
                         y: -2,
                         boxShadow: '0 5px 15px rgba(0,0,0,0.1)'
                       }}
-                      className="glass-card px-3 py-2 rounded-lg text-sm font-medium cursor-pointer"
+                      className="glass-card px-2 py-1 md:px-3 md:py-2 rounded-lg text-xs md:text-sm font-medium cursor-pointer"
                       style={{
                         backdropFilter: 'blur(20px)',
                         backgroundColor: 'rgba(255, 255, 255, 0.1)',
@@ -230,7 +230,7 @@ const AboutSection: React.FC = () => {
                 <motion.a
                   href="/resume.pdf"
                   download="NR_Bhogyaan_Resume.pdf"
-                  className="inline-flex items-center gap-3 glass-card px-5 py-3 rounded-lg font-semibold transition-all duration-300"
+                  className="inline-flex items-center gap-2 md:gap-3 glass-card px-4 py-2 md:px-5 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-all duration-300"
                   style={{
                     backdropFilter: 'blur(20px)',
                     backgroundColor: 'rgba(255, 255, 255, 0.1)',
@@ -244,7 +244,7 @@ const AboutSection: React.FC = () => {
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Download className="w-5 h-5" />
+                  <Download className="w-4 h-4 md:w-5 md:h-5" />
                   Download Resume
                 </motion.a>
               </motion.div>
@@ -256,7 +256,7 @@ const AboutSection: React.FC = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
           >
             {stats.map((stat, index) => (
               <motion.div
@@ -264,7 +264,7 @@ const AboutSection: React.FC = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, delay: 1 + index * 0.1 }}
-                className="text-center glass-card p-4 rounded-xl transition-all duration-300 cursor-pointer"
+                className="text-center glass-card p-3 md:p-4 rounded-xl transition-all duration-300 cursor-pointer"
                 style={{
                   backdropFilter: 'blur(20px)',
                   backgroundColor: 'rgba(255, 255, 255, 0.1)',
@@ -278,19 +278,19 @@ const AboutSection: React.FC = () => {
                 }}
               >
                 <motion.div 
-                  className="inline-flex items-center justify-center w-10 h-10 bg-primary/20 rounded-lg mb-3"
+                  className="inline-flex items-center justify-center w-8 h-8 md:w-10 md:h-10 bg-primary/20 rounded-lg mb-2 md:mb-3"
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <stat.icon className="w-5 h-5 text-primary" />
+                  <stat.icon className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                 </motion.div>
-                <h3 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">
+                <h3 className="text-lg md:text-xl lg:text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-1 md:mb-2">
                   {stat.value}
                 </h3>
                 <p className="text-xs text-foreground/70">{stat.label}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
