@@ -87,7 +87,7 @@ const AboutSection: React.FC = () => {
                 >
                   <div className="w-full aspect-square rounded-full overflow-hidden">
                     <img 
-                      src="src/assets/1000252889.jpg" 
+                      src="/1000252889.jpg" 
                       alt="NR Bhogyaan" 
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                     />
