@@ -9,7 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Github, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
-// EmailJS configuration - You'll need to set these up in your EmailJS account
+// EmailJS configuration
 const EMAILJS_SERVICE_ID = "service_bhogyaan";
 const EMAILJS_TEMPLATE_ID = "template_bhogyaan";
 const EMAILJS_PUBLIC_KEY = "your_public_key";
@@ -69,10 +69,8 @@ const ContactSection: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      // Initialize EmailJS if not already done
       emailjs.init(EMAILJS_PUBLIC_KEY);
       
-      // Send email using EmailJS
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
@@ -109,7 +107,6 @@ const ContactSection: React.FC = () => {
 
   return (
     <section id="contact" className="section-padding relative overflow-hidden">
-      {/* Background Elements */}
       <div className="absolute inset-0 opacity-10">
         <motion.div 
           className="absolute top-1/4 left-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl"
@@ -133,104 +130,116 @@ const ContactSection: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center mb-12 md:mb-16"
+            className="text-center mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
-              Get in <span 
-                className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient"
-                style={{ backgroundSize: '200% 200%' }}
-              >Touch</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              Get in <span className="gradient-text">Touch</span>
             </h2>
-            <p className="text-base md:text-xl text-foreground/70 max-w-2xl mx-auto">
+            <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
               Feel free to reach out for collaborations, opportunities, or just to say hello!
             </p>
           </motion.div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            {/* Left Side - Contact Information */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="space-y-8"
             >
-              <h3 className="text-2xl md:text-3xl font-bold mb-6">Let's Talk</h3>
-              <p className="text-foreground/80 mb-8 text-base md:text-lg leading-relaxed">
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Let's create something amazing together!
-              </p>
+              <div>
+                <h3 className="text-3xl font-bold mb-6">Let's Talk</h3>
+                <p className="text-foreground/80 mb-8 text-lg leading-relaxed">
+                  I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Let's create something amazing together!
+                </p>
+              </div>
               
-              <div className="space-y-6 mb-8">
+              {/* Contact Info Cards */}
+              <div className="space-y-6">
                 <motion.div 
-                  className="flex items-center gap-4"
-                  whileHover={{ x: 5 }}
+                  className="glass-card p-6 rounded-2xl hover:shadow-xl transition-all duration-300"
+                  whileHover={{ x: 5, scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center text-white">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg">Email</h4>
-                    <p className="text-foreground/80">bhogyaannr@gmail.com</p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center text-white">
+                      <Mail className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-lg">Email</h4>
+                      <p className="text-foreground/80">bhogyaannr@gmail.com</p>
+                    </div>
                   </div>
                 </motion.div>
                 
                 <motion.div 
-                  className="flex items-center gap-4"
-                  whileHover={{ x: 5 }}
+                  className="glass-card p-6 rounded-2xl hover:shadow-xl transition-all duration-300"
+                  whileHover={{ x: 5, scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-accent to-primary rounded-2xl flex items-center justify-center text-white">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg">Phone</h4>
-                    <p className="text-foreground/80">+91 8870750574</p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-accent to-primary rounded-2xl flex items-center justify-center text-white">
+                      <Phone className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-lg">Phone</h4>
+                      <p className="text-foreground/80">+91 8870750574</p>
+                    </div>
                   </div>
                 </motion.div>
                 
                 <motion.div 
-                  className="flex items-center gap-4"
-                  whileHover={{ x: 5 }}
+                  className="glass-card p-6 rounded-2xl hover:shadow-xl transition-all duration-300"
+                  whileHover={{ x: 5, scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center text-white">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg">Location</h4>
-                    <p className="text-foreground/80">Madurai, Tamil Nadu, India</p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center text-white">
+                      <MapPin className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-lg">Location</h4>
+                      <p className="text-foreground/80">Madurai, Tamil Nadu, India</p>
+                    </div>
                   </div>
                 </motion.div>
               </div>
               
-              <h4 className="text-xl font-semibold mb-6">Connect with me</h4>
-              <div className="flex gap-4">
-                {socialLinks.map((link, index) => (
-                  <motion.a
-                    key={link.name}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative p-4 rounded-2xl transition-all duration-300 no-underline glass-card hover:shadow-xl"
-                    whileHover={{ scale: 1.1, y: -3 }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ delay: 0.6 + index * 0.1 }}
-                    aria-label={link.name}
-                  >
-                    <link.icon className={`w-6 h-6 transition-colors duration-300 ${link.color} group-hover:scale-110`} />
-                    <span className="sr-only">{link.name}</span>
-                  </motion.a>
-                ))}
+              {/* Social Links */}
+              <div>
+                <h4 className="text-xl font-semibold mb-6">Connect with me</h4>
+                <div className="flex gap-4">
+                  {socialLinks.map((link, index) => (
+                    <motion.a
+                      key={link.name}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative p-4 rounded-2xl transition-all duration-300 glass-card hover:shadow-xl"
+                      whileHover={{ scale: 1.1, y: -3 }}
+                      whileTap={{ scale: 0.95 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                      transition={{ delay: 0.6 + index * 0.1 }}
+                      aria-label={link.name}
+                    >
+                      <link.icon className={`w-6 h-6 transition-colors duration-300 ${link.color} group-hover:scale-110`} />
+                    </motion.a>
+                  ))}
+                </div>
               </div>
             </motion.div>
             
+            {/* Right Side - Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <form onSubmit={handleSubmit} className="glass-card p-6 md:p-8 rounded-2xl shadow-xl">
-                <div className="space-y-6">
+              <div className="glass-card p-8 rounded-2xl shadow-xl">
+                <h3 className="text-2xl font-bold mb-6">Send Message</h3>
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-semibold mb-2">Name</label>
                     <Input
@@ -291,8 +300,8 @@ const ContactSection: React.FC = () => {
                       )}
                     </Button>
                   </motion.div>
-                </div>
-              </form>
+                </form>
+              </div>
             </motion.div>
           </div>
         </motion.div>
