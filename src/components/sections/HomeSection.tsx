@@ -14,7 +14,7 @@ const HomeSection = () => {
     { 
       name: "GitHub", 
       icon: Github, 
-      url: "https://github.com/bhogyaannr",
+      url: "https://github.com/Bhogyaan",
       color: "hover:bg-gray-600"
     },
     { 
