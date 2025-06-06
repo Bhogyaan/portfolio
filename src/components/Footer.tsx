@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import { Github, Instagram, Twitter, Mail, Phone, MapPin, Heart } from 'lucide-react';
+import { Github, Instagram, Twitter, Mail, Phone, MapPin, Heart, Linkedin } from 'lucide-react';
 
 const socialLinks = [
   { 
@@ -8,6 +8,12 @@ const socialLinks = [
     icon: Github, 
     url: "https://github.com/bhogyaannr",
     color: "hover:text-gray-600 dark:hover:text-gray-300"
+  },
+  { 
+    name: "LinkedIn", 
+    icon: Linkedin, 
+    url: "https://linkedin.com/in/bhogyaannr",
+    color: "hover:text-blue-600"
   },
   { 
     name: "Instagram", 
@@ -53,8 +59,8 @@ const Footer = () => {
         />
       </div>
 
-      <div className="container mx-auto px-4 py-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <div className="container mx-auto px-4 py-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {/* Brand Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -62,38 +68,38 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
             className="lg:col-span-2"
           >
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-4">
+            <h3 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-3">
               N R Bhogyaan
             </h3>
-            <p className="text-foreground/70 mb-6 max-w-md leading-relaxed">
+            <p className="text-foreground/70 mb-4 max-w-md leading-relaxed text-sm">
               Front-end developer passionate about creating responsive, user-friendly web applications with modern technologies and clean code.
             </p>
             
             {/* Contact Info */}
-            <div className="space-y-3 mb-6">
-              <div className="flex items-center gap-3 text-sm text-foreground/60">
+            <div className="space-y-2 mb-4">
+              <div className="flex items-center gap-2 text-sm text-foreground/60">
                 <Mail className="w-4 h-4 text-primary" />
                 <span>bhogyaannr@gmail.com</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-foreground/60">
+              <div className="flex items-center gap-2 text-sm text-foreground/60">
                 <Phone className="w-4 h-4 text-primary" />
                 <span>+91 8870750574</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-foreground/60">
+              <div className="flex items-center gap-2 text-sm text-foreground/60">
                 <MapPin className="w-4 h-4 text-primary" />
                 <span>Madurai, Tamil Nadu, India</span>
               </div>
             </div>
 
             {/* Social Links */}
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               {socialLinks.map((link, index) => (
                 <motion.a
                   key={link.name}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-foreground/70 transition-all duration-300 ${link.color}`}
+                  className={`p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-foreground/70 transition-all duration-300 ${link.color}`}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: 20 }}
@@ -101,7 +107,7 @@ const Footer = () => {
                   transition={{ delay: 0.1 * index }}
                   aria-label={link.name}
                 >
-                  <link.icon className="w-5 h-5" />
+                  <link.icon className="w-4 h-4" />
                 </motion.a>
               ))}
             </div>
@@ -113,8 +119,8 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
-            <ul className="space-y-3">
+            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <ul className="space-y-2">
               {quickLinks.map((link, index) => (
                 <motion.li key={link.name}>
                   <a
@@ -134,8 +140,8 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h4 className="text-lg font-semibold mb-6">Technologies</h4>
-            <div className="space-y-2">
+            <h4 className="text-lg font-semibold mb-4">Technologies</h4>
+            <div className="space-y-1">
               {["React.js", "Vue.js", "JavaScript", "Python", "Node.js", "MongoDB"].map((skill, index) => (
                 <div key={skill} className="text-sm text-foreground/70">
                   {skill}
@@ -150,7 +156,7 @@ const Footer = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="border-t border-border/50 mt-12 pt-8"
+          className="border-t border-border/50 mt-8 pt-6"
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-foreground/60 text-center md:text-left">

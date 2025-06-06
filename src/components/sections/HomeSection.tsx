@@ -1,237 +1,195 @@
 
 import { motion } from 'framer-motion';
-import { ArrowDown, Download, Github, Mail, Phone, Instagram, Twitter } from 'lucide-react';
-import ParticleBackground from '../ParticleBackground';
+import { useInView } from 'react-intersection-observer';
+import { Download, Github, Instagram, Twitter, Linkedin, ChevronDown } from 'lucide-react';
+import ParticleBackground from '@/components/ParticleBackground';
 
 const HomeSection = () => {
-  const handleSmoothScroll = (targetId: string) => {
-    const element = document.getElementById(targetId);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
   const socialLinks = [
     { 
+      name: "GitHub", 
       icon: Github, 
-      href: "https://github.com/bhogyaannr", 
-      label: "GitHub", 
-      color: "text-gray-800 dark:text-gray-200"
+      url: "https://github.com/bhogyaannr",
+      color: "hover:bg-gray-600"
     },
     { 
+      name: "LinkedIn", 
+      icon: Linkedin, 
+      url: "https://linkedin.com/in/bhogyaannr",
+      color: "hover:bg-blue-600"
+    },
+    { 
+      name: "Instagram", 
       icon: Instagram, 
-      href: "https://instagram.com/bhogyaannr", 
-      label: "Instagram", 
-      color: "text-pink-600 dark:text-pink-400"
+      url: "https://instagram.com/bhogyaannr",
+      color: "hover:bg-pink-500"
     },
     { 
+      name: "Twitter", 
       icon: Twitter, 
-      href: "https://twitter.com/bhogyaannr", 
-      label: "Twitter", 
-      color: "text-blue-600 dark:text-blue-400"
-    },
-    { 
-      icon: Phone, 
-      href: "tel:+918870750574", 
-      label: "Phone", 
-      color: "text-green-600 dark:text-green-400"
-    },
-    { 
-      icon: Mail, 
-      href: "mailto:bhogyaannr@gmail.com", 
-      label: "Email", 
-      color: "text-red-600 dark:text-red-400"
+      url: "https://twitter.com/bhogyaannr",
+      color: "hover:bg-blue-500"
     }
   ];
 
   return (
-    <section 
-      id="home" 
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
-    >
-      <ParticleBackground />
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Particle Background */}
+      <div className="absolute inset-0 z-0">
+        <ParticleBackground />
+      </div>
+
+      {/* Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/90 to-background z-10" />
       
-      <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className="text-center max-w-4xl mx-auto">
+      {/* Additional Background Elements */}
+      <div className="absolute inset-0 opacity-30 z-10">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-20" ref={ref}>
+        <div className="text-center space-y-6 max-w-4xl mx-auto">
           {/* Main Heading */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8 }}
-            className="mb-6"
+            className="space-y-4"
           >
             <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 font-space-grotesk text-foreground"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight"
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+              transition={{ duration: 1, delay: 0.2 }}
             >
               Hi, I'm{' '}
-              <motion.span 
-                className="inline-block relative"
-                style={{
-                  background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))',
-                  backgroundSize: '200% 200%',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-                animate={{
-                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                }}
-                transition={{
-                  duration: 3,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                }}
-              >
+              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
                 N R Bhogyaan
-              </motion.span>
+              </span>
             </motion.h1>
             
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl lg:text-3xl mb-2 text-muted-foreground"
+              className="text-xl md:text-2xl lg:text-3xl font-medium text-foreground/80"
             >
-              Front End Developer & MERN Stack Developer
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-lg md:text-xl text-muted-foreground/80 mb-4"
-            >
-              Building innovative web & mobile solutions with modern technologies
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="text-base md:text-lg text-muted-foreground/70"
-            >
-              📍 Madurai, TN | 📧 bhogyaannr@gmail.com | 📱 +91 8870750574
+              Full Stack Developer & Tech Enthusiast
             </motion.div>
           </motion.div>
 
-          {/* Action Buttons */}
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed"
+          >
+            Passionate about creating innovative web solutions with React.js, Vue.js, and Flutter. 
+            Currently pursuing Master's in Computer Applications and interning at MindVision Technologies.
+          </motion.p>
+
+          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <motion.button
-              onClick={() => handleSmoothScroll('contact')}
-              className="group relative px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg transition-all duration-300 flex items-center gap-2 overflow-hidden text-white border-none cursor-pointer"
+            <motion.a
+              href="#contact"
+              className="glass-card px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:shadow-xl"
               style={{
-                background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
+                backdropFilter: 'blur(20px)',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                border: '2px solid rgba(255, 255, 255, 0.2)',
               }}
               whileHover={{ 
                 scale: 1.05, 
                 y: -2,
-                boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                backgroundColor: 'rgba(255, 255, 255, 0.2)',
               }}
               whileTap={{ scale: 0.95 }}
             >
-              <Mail className="w-5 h-5 relative z-10" />
-              <span className="relative z-10">Get In Touch</span>
-              <motion.div
-                className="absolute inset-0 bg-white/20 rounded-2xl"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: '100%' }}
-                transition={{ duration: 0.6 }}
-              />
-            </motion.button>
+              Get In Touch
+            </motion.a>
             
             <motion.a
               href="/resume.pdf"
               download="NR_Bhogyaan_Resume.pdf"
-              className="group relative px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg transition-all duration-300 flex items-center gap-2 overflow-hidden text-white no-underline"
+              className="glass-card px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:shadow-xl flex items-center gap-3"
               style={{
-                background: 'linear-gradient(135deg, hsl(var(--accent)), hsl(var(--primary)))',
+                backdropFilter: 'blur(20px)',
+                backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                border: '2px solid rgba(255, 255, 255, 0.1)',
               }}
               whileHover={{ 
                 scale: 1.05, 
                 y: -2,
-                boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
               }}
               whileTap={{ scale: 0.95 }}
             >
-              <Download className="w-5 h-5 relative z-10" />
-              <span className="relative z-10">Download Resume</span>
-              <motion.div
-                className="absolute inset-0 bg-white/20 rounded-2xl"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: '100%' }}
-                transition={{ duration: 0.6 }}
-              />
+              <Download className="w-5 h-5" />
+              Download Resume
             </motion.a>
           </motion.div>
 
           {/* Social Links */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
-            className="flex justify-center items-center gap-6 mb-16"
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className="flex justify-center gap-4 pt-4"
           >
-            {socialLinks.map((social, index) => (
+            {socialLinks.map((link, index) => (
               <motion.a
-                key={social.label}
-                href={social.href}
+                key={link.name}
+                href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative p-4 rounded-2xl transition-all duration-300 no-underline glass-card hover:shadow-xl"
-                whileHover={{ 
-                  y: -3,
-                  scale: 1.1,
+                className={`p-3 rounded-xl glass-card text-foreground/70 transition-all duration-300 ${link.color}`}
+                style={{
+                  backdropFilter: 'blur(20px)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
                 }}
+                whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                 transition={{ delay: 1.2 + index * 0.1 }}
-                aria-label={social.label}
+                aria-label={link.name}
               >
-                <social.icon className={`w-6 h-6 transition-colors duration-300 ${social.color} group-hover:scale-110`} />
-                <span className="sr-only">{social.label}</span>
+                <link.icon className="w-5 h-5" />
               </motion.a>
             ))}
           </motion.div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.5 }}
-            className="flex flex-col items-center"
-          >
-            <motion.button
-              onClick={() => handleSmoothScroll('about')}
-              className="flex flex-col items-center gap-2 transition-colors group cursor-pointer bg-transparent border-none text-muted-foreground hover:text-foreground"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <span className="text-sm font-medium">Scroll to explore</span>
-              <motion.div
-                whileHover={{ color: 'hsl(var(--primary))' }}
-                transition={{ duration: 0.3 }}
-              >
-                <ArrowDown className="w-5 h-5 transition-colors" />
-              </motion.div>
-            </motion.button>
-          </motion.div>
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.8, delay: 1.4 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        >
+          <motion.a
+            href="#about"
+            className="flex flex-col items-center text-foreground/60 hover:text-foreground transition-colors duration-300"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <span className="text-sm mb-2">Scroll Down</span>
+            <ChevronDown className="w-6 h-6" />
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );
