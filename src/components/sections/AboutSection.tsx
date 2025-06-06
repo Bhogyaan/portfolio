@@ -9,12 +9,12 @@ const AboutSection: React.FC = () => {
     threshold: 0.1,
   });
 
-  const stats = [
-    { icon: Code, label: 'Projects Completed', value: '15+' },
-    { icon: Users, label: 'Technologies Mastered', value: '12+' },
-    { icon: Coffee, label: 'Cups of Coffee', value: '∞' },
-    { icon: Award, label: 'Years Experience', value: '3+' },
-  ];
+  // const stats = [
+  //   { icon: Code, label: 'Projects Completed', value: '15+' },
+  //   { icon: Users, label: 'Technologies Mastered', value: '12+' },
+  //   { icon: Coffee, label: 'Cups of Coffee', value: '∞' },
+  //   { icon: Award, label: 'Years Experience', value: '3+' },
+  // ];
 
   const skills = [
     'React.js & Vue.js',
@@ -87,7 +87,7 @@ const AboutSection: React.FC = () => {
                 >
                   <div className="w-full aspect-square rounded-full overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                      src="src/assets/1000252889.jpg" 
                       alt="NR Bhogyaan" 
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                     />
@@ -228,8 +228,8 @@ const AboutSection: React.FC = () => {
                 transition={{ duration: 0.6, delay: 1 }}
               >
                 <motion.a
-                  href="/resume.pdf"
-                  download="NR_Bhogyaan_Resume.pdf"
+                  href="/N_R_BHOGYAAN.pdf"
+                  download="N_R_BHOGYAAN.pdf"
                   className="inline-flex items-center gap-2 md:gap-3 glass-card px-4 py-2 md:px-5 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-all duration-300"
                   style={{
                     backdropFilter: 'blur(20px)',
@@ -258,7 +258,7 @@ const AboutSection: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
           >
-            {stats.map((stat, index) => (
+            {/* {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 30 }}
@@ -289,7 +289,7 @@ const AboutSection: React.FC = () => {
                 </h3>
                 <p className="text-xs text-foreground/70">{stat.label}</p>
               </motion.div>
-            ))}
+            ))} */}
           </motion.div>
         </motion.div>
       </div>

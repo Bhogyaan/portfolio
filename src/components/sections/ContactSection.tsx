@@ -30,7 +30,7 @@ const ContactSection: React.FC = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.currentTarget, 'YOUR_PUBLIC_KEY')
+    emailjs.sendForm('service_be0w5jg', 'template_b8kpr6o', e.currentTarget, 'eZMCyfi1aQo3o9PNY')
       .then((result) => {
           console.log(result.text);
           alert('Message sent successfully!');
