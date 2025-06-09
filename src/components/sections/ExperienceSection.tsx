@@ -15,7 +15,7 @@ interface ExperienceItem {
 
 const experienceData: ExperienceItem[] = [
   {
-    title: "Front End Developer Intern",
+    title: "Mern Stack Developer Intern",
     company: "Mind Vision Technologies",
     period: "Jan 2025 - Jun 2025",
     location: "Madurai, TN",

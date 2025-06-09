@@ -1,52 +1,45 @@
-
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Award, ExternalLink } from 'lucide-react';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Award } from "lucide-react";
 
 interface Certificate {
   title: string;
-  organization: string;
+    organization: String;
   date: string;
   image: string;
-  verificationLink?: string;
 }
 
 const certificates: Certificate[] = [
   {
-    title: "Python Programming",
+    title: "Python",
     organization: "Besant Technologies",
-    date: "2023",
+    date: "2024",
     image: "https://images.unsplash.com/photo-1526379879527-8559ecfcaec0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    verificationLink: "#"
   },
   {
     title: "Web Development Course",
     organization: "Udemy",
     date: "2022",
     image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    verificationLink: "#"
   },
   {
     title: "React.js Workshop",
     organization: "Tech Conference",
     date: "2024",
     image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    verificationLink: "#"
   },
   {
     title: "Power BI Workshop",
     organization: "Microsoft",
     date: "2024",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    verificationLink: "#"
   },
   {
     title: "MERN Stack Workshop",
     organization: "Developer Community",
     date: "2024",
     image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    verificationLink: "#"
-  }
+  },
 ];
 
 const CertificatesSection: React.FC = () => {
@@ -126,19 +119,6 @@ const CertificatesSection: React.FC = () => {
                       {certificate.date}
                     </span>
                   </div>
-                  
-                  {certificate.verificationLink && (
-                    <motion.a
-                      href={certificate.verificationLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-primary hover:text-accent text-sm font-medium transition-colors duration-300"
-                      whileHover={{ x: 5 }}
-                    >
-                      View Certificate
-                      <ExternalLink className="w-4 h-4" />
-                    </motion.a>
-                  )}
                 </div>
               </motion.div>
             ))}
