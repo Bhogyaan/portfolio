@@ -228,8 +228,8 @@ const AboutSection: React.FC = () => {
                 transition={{ duration: 0.6, delay: 1 }}
               >
                 <motion.a
-                  href="/N_R_BHOGYAAN.pdf"
-                  download="N_R_BHOGYAAN.pdf"
+                  href="/NR_BHOGYAAN.pdf"
+                  download="NR_BHOGYAAN.pdf"
                   className="inline-flex items-center gap-2 md:gap-3 glass-card px-4 py-2 md:px-5 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-all duration-300"
                   style={{
                     backdropFilter: 'blur(20px)',

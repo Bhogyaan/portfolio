@@ -121,8 +121,8 @@ const HomeSection = () => {
             </motion.a>
             
             <motion.a
-              href="/N_R_BHOGYAAN.pdf"
-              download="N_R_BHOGYAAN.pdf"
+              href="/NR_BHOGYAAN.pdf"
+              download="NR_BHOGYAAN.pdf"
               className="glass-card px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:shadow-xl flex items-center gap-3"
               style={{
                 backdropFilter: 'blur(20px)',
