@@ -178,7 +178,7 @@ const AboutSection: React.FC = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <p className="text-xs text-foreground/60 uppercase tracking-wider">Experience</p>
-                  <p className="font-semibold text-sm md:text-base">3+ Years</p>
+                  <p className="font-semibold text-sm md:text-base">0.6 Years</p>
                 </motion.div>
                 <motion.div 
                   className="space-y-1 md:space-y-2"
