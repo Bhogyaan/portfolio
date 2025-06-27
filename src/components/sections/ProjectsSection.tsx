@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ExternalLink, Github, Smartphone, Globe, Users, Database } from 'lucide-react';
@@ -14,55 +13,61 @@ interface Project {
   };
   category: string;
   status: string;
+  achievements?: string[];
 }
 
 const projects: Project[] = [
   {
     title: "Real-Time Blog Web Application",
-    description: "A comprehensive blog platform built with React and Node.js featuring CRUD operations, real-time comment updates, user authentication, and mobile-responsive design.",
+    description: "A full-stack blog platform using React.js, Node.js, Express.js, and MongoDB for dynamic content management, supporting up to 500 simulated users in testing.",
     image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    technologies: ["React.js", "Node.js", "Express", "MongoDB", "Socket.io", "JWT"],
+    technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "bcrypt", "Tailwind CSS"],
     links: {
       demo: "https://blog-app.example.com",
       github: "https://github.com/bhogyaannr/blog-app"
     },
     category: "Full Stack",
-    status: "Completed"
+    status: "Completed",
+    achievements: [
+      "Implemented CRUD operations and real-time commenting with WebSockets, reducing comment refresh time by 70%",
+      "Built user authentication and authorization using JWT and bcrypt, ensuring 100% data security",
+      "Designed responsive UI with Tailwind CSS, achieving 95% device compatibility and 30% improved user experience"
+    ]
   },
   {
     title: "Car Rental Services Platform",
-    description: "A responsive car rental website with real-time data integration using PHP backend. Features include vehicle browsing, booking system, and cross-browser compatibility.",
+    description: "A responsive car rental platform UI using PHP, enabling real-time data display for 100+ mock bookings, improving engagement by 25% in testing.",
     image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "Bootstrap"],
+    technologies: ["PHP", "HTML", "CSS", "JavaScript", "MySQL", "Bootstrap"],
     links: {
       demo: "https://car-rental.example.com",
       github: "https://github.com/bhogyaannr/car-rental"
     },
     category: "Frontend",
-    status: "Completed"
+    status: "Completed",
+    achievements: [
+      "Designed and developed responsive car rental platform UI using PHP",
+      "Enabled real-time data display for 100+ mock bookings",
+      "Optimized user experience, receiving positive feedback from 90% of test users"
+    ]
   },
   {
     title: "Quiz Management Platform",
-    description: "An interactive quiz platform with timed questions, automated grading system, and real-time features. Collaborative project with seamless frontend-backend integration.",
+    description: "A quiz platform with timed questions and automated grading using PHP, supporting 200+ simulated users with 97% grading accuracy.",
     image: "https://images.unsplash.com/photo-1606868306217-dbf5046868d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    technologies: ["React.js", "PHP", "MySQL", "JavaScript", "CSS3"],
+    technologies: ["PHP", "HTML", "CSS", "JavaScript", "MySQL", "Bootstrap"],
     links: {
       demo: "https://quiz-platform.example.com",
       github: "https://github.com/bhogyaannr/quiz-platform"
     },
-    category: "Frontend",
-    status: "Completed"
-  },
-  {
-    title: "College Management System",
-    description: "A comprehensive Flutter-based mobile application for college management featuring student information system, attendance tracking, and administrative tools with modern UI design.",
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    technologies: ["Flutter", "Dart", "Firebase", "SQLite", "Provider"],
-    links: {
-      github: "https://github.com/bhogyaannr/college-management"
-    },
-    category: "Mobile App",
-    status: "In Development"
+    category: "Full Stack",
+    status: "Completed",
+    achievements: [
+      "Developed quiz platform with timed questions and automated grading using PHP",
+      "Supported 200+ simulated users with 97% grading accuracy",
+      "Collaborated with backend team to integrate real-time features, reducing data processing time by 40%",
+      "Designed responsive UI with Bootstrap, optimizing performance across 90% of devices and improving completion rates by 20%"
+    ]
   }
 ];
 
@@ -198,41 +203,51 @@ const ProjectsSection: React.FC = () => {
                       {project.title}
                     </motion.h3>
                     
-                    <p className="text-sm md:text-base text-foreground/70 mb-4 md:mb-5 leading-relaxed">
+                    <p className="text-sm md:text-base text-foreground/80 mb-4 leading-relaxed">
                       {project.description}
                     </p>
-                    
-                    <div className="mb-4 md:mb-6 flex flex-wrap gap-1.5 md:gap-2">
-                      {project.technologies.map((tech, idx) => (
-                        <motion.span 
-                          key={idx}
-                          className="px-2 py-1 md:px-3 md:py-1 bg-primary/10 text-primary border border-primary/20 rounded-full text-xs md:text-sm font-medium transition-all duration-300"
-                          whileHover={{ 
-                            scale: 1.1, 
-                            backgroundColor: 'hsl(var(--primary) / 0.2)',
-                            y: -2
-                          }}
+
+                    {/* Achievements */}
+                    {project.achievements && (
+                      <div className="mb-4">
+                        <h4 className="text-sm font-semibold text-primary mb-2">Key Achievements:</h4>
+                        <ul className="space-y-1">
+                          {project.achievements.map((achievement, achIndex) => (
+                            <li key={achIndex} className="text-xs text-foreground/70 flex items-start gap-2">
+                              <span className="w-1 h-1 bg-accent rounded-full mt-2 flex-shrink-0" />
+                              {achievement}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies.map((tech, techIndex) => (
+                        <motion.span
+                          key={techIndex}
+                          className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full"
+                          whileHover={{ scale: 1.05 }}
                         >
                           {tech}
                         </motion.span>
                       ))}
                     </div>
-                    
-                    <div className="flex flex-col sm:flex-row gap-3">
+
+                    {/* Links */}
+                    <div className="flex gap-3">
                       {project.links.demo && (
                         <motion.a
                           href={project.links.demo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-medium text-sm transition-all duration-300 shadow-lg"
-                          whileHover={{ 
-                            scale: 1.05,
-                            boxShadow: '0 10px 25px rgba(0,0,0,0.2)'
-                          }}
+                          className="flex items-center gap-2 px-3 py-2 bg-primary/10 text-primary rounded-lg text-sm font-medium transition-all duration-300 hover:bg-primary/20"
+                          whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                         >
                           <ExternalLink className="w-4 h-4" />
-                          <span>Live Demo</span>
+                          Live Demo
                         </motion.a>
                       )}
                       {project.links.github && (
@@ -240,16 +255,12 @@ const ProjectsSection: React.FC = () => {
                           href={project.links.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-800 dark:bg-gray-700 text-white rounded-xl font-medium text-sm transition-all duration-300 shadow-lg"
-                          whileHover={{ 
-                            scale: 1.05,
-                            backgroundColor: '#374151',
-                            boxShadow: '0 10px 25px rgba(0,0,0,0.2)'
-                          }}
+                          className="flex items-center gap-2 px-3 py-2 bg-accent/10 text-accent rounded-lg text-sm font-medium transition-all duration-300 hover:bg-accent/20"
+                          whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                         >
                           <Github className="w-4 h-4" />
-                          <span>View Code</span>
+                          Source Code
                         </motion.a>
                       )}
                     </div>
@@ -258,36 +269,6 @@ const ProjectsSection: React.FC = () => {
               );
             })}
           </div>
-
-          {/* View More Projects Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="text-center mt-12"
-          >
-            <motion.a
-              href="https://github.com/bhogyaannr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 glass-card px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300"
-              style={{
-                backdropFilter: 'blur(20px)',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-              }}
-              whileHover={{ 
-                scale: 1.05, 
-                y: -3,
-                backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                boxShadow: '0 15px 35px rgba(0,0,0,0.1)'
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Github className="w-5 h-5" />
-              View More Projects
-            </motion.a>
-          </motion.div>
         </motion.div>
       </div>
     </section>

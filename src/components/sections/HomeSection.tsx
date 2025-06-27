@@ -1,8 +1,8 @@
-
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Download, Github, Instagram, Twitter, Linkedin, ChevronDown } from 'lucide-react';
 import ParticleBackground from '@/components/ParticleBackground';
+import { socialLinks } from "@/lib/socialLinks";
 
 const HomeSection = () => {
   const [ref, inView] = useInView({
@@ -10,43 +10,16 @@ const HomeSection = () => {
     threshold: 0.1,
   });
 
-  const socialLinks = [
-    { 
-      name: "GitHub", 
-      icon: Github, 
-      url: "https://github.com/Bhogyaan",
-      color: "hover:bg-gray-600"
-    },
-    { 
-      name: "LinkedIn", 
-      icon: Linkedin, 
-      url: "https://linkedin.com/in/bhogyaannr",
-      color: "hover:bg-blue-600"
-    },
-    { 
-      name: "Instagram", 
-      icon: Instagram, 
-      url: "https://instagram.com/bhogyaannr",
-      color: "hover:bg-pink-500"
-    },
-    { 
-      name: "Twitter", 
-      icon: Twitter, 
-      url: "https://twitter.com/bhogyaannr",
-      color: "hover:bg-blue-500"
-    }
-  ];
-
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-background/90 to-background"
+    >
       {/* Particle Background */}
       <div className="absolute inset-0 z-0">
         <ParticleBackground />
       </div>
 
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/90 to-background z-10" />
-      
       {/* Additional Background Elements */}
       <div className="absolute inset-0 opacity-30 z-10">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
@@ -80,7 +53,7 @@ const HomeSection = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl md:text-2xl lg:text-3xl font-medium text-foreground/80"
             >
-              Full Stack Developer & Tech Enthusiast
+              MERN Stack Developer & Tech Enthusiast
             </motion.div>
           </motion.div>
 
@@ -92,7 +65,7 @@ const HomeSection = () => {
             className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed"
           >
             Passionate about creating innovative web solutions with React.js, Vue.js, and Flutter. 
-            Currently pursuing Master's in Computer Applications and interning at MindVision Technologies.
+            Currently pursuing Master's in Computer Applications at KLN College of Engineering with 8.1 CGPA and interning at MindVision Technologies.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -154,11 +127,11 @@ const HomeSection = () => {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`p-3 rounded-xl glass-card text-foreground/70 transition-all duration-300 ${link.color}`}
+                className={`p-3 rounded-xl glass-card transition-all duration-300 ${link.color ? link.color : ''}`}
                 style={{
                   backdropFilter: 'blur(20px)',
                   backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)'
                 }}
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
@@ -167,7 +140,7 @@ const HomeSection = () => {
                 transition={{ delay: 1.2 + index * 0.1 }}
                 aria-label={link.name}
               >
-                <link.icon className="w-5 h-5" />
+                <link.icon className="w-5 h-5" style={link.brandColor ? { color: link.brandColor } : {}} />
               </motion.a>
             ))}
           </motion.div>

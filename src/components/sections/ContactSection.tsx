@@ -3,6 +3,7 @@ import { useInView } from 'react-intersection-observer';
 import { Mail, Phone, MapPin, Github, Instagram, Twitter, Send, Linkedin } from 'lucide-react';
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { socialLinks } from "@/lib/socialLinks";
 
 interface ContactInfoItem {
   icon: React.ComponentType<any>;
@@ -61,33 +62,6 @@ const ContactSection: React.FC = () => {
       label: 'Location',
       value: 'Madurai, Tamil Nadu, India',
       href: '#'
-    }
-  ];
-
-  const socialLinks = [
-    { 
-      name: "GitHub", 
-      icon: Github, 
-      url: "https://github.com/Bhogyaan",
-      color: "hover:bg-gray-600 hover:text-white"
-    },
-    { 
-      name: "LinkedIn", 
-      icon: Linkedin, 
-      url: "https://linkedin.com/in/bhogyaannr",
-      color: "hover:bg-blue-600 hover:text-white"
-    },
-    { 
-      name: "Instagram", 
-      icon: Instagram, 
-      url: "https://instagram.com/bhogyaannr",
-      color: "hover:bg-pink-500 hover:text-white"
-    },
-    { 
-      name: "Twitter", 
-      icon: Twitter, 
-      url: "https://twitter.com/bhogyaannr",
-      color: "hover:bg-blue-500 hover:text-white"
     }
   ];
 
@@ -176,11 +150,11 @@ const ContactSection: React.FC = () => {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`p-3 rounded-xl glass-card transition-all duration-300 ${link.color}`}
+                      className={`p-3 rounded-xl glass-card transition-all duration-300 ${link.color ? link.color : ''}`}
                       style={{
                         backdropFilter: 'blur(20px)',
                         backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        border: '1px solid rgba(255, 255, 255, 0.1)'
                       }}
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
@@ -189,7 +163,7 @@ const ContactSection: React.FC = () => {
                       transition={{ delay: 0.9 + index * 0.1 }}
                       aria-label={link.name}
                     >
-                      <link.icon className="w-5 h-5" />
+                      <link.icon className="w-5 h-5" style={link.brandColor ? { color: link.brandColor } : {}} />
                     </motion.a>
                   ))}
                 </div>

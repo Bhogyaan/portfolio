@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -108,7 +107,7 @@ const Navbar = () => {
               backgroundClip: 'text',
             }}
           >
-            NR Bhogyaan
+            N R Bhogyaan
           </span>
         </motion.button>
 

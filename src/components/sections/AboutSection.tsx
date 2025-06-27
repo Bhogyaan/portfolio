@@ -1,7 +1,7 @@
-
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Download, Code, Users, Coffee, Award, GraduationCap, MapPin } from 'lucide-react';
+import { Download, Code, Users, Coffee, Award, GraduationCap, MapPin, Phone, Mail, Calendar1Icon } from 'lucide-react';
+import { Calendar } from '../ui/calendar';
 
 const AboutSection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -21,8 +21,10 @@ const AboutSection: React.FC = () => {
     'Flutter & Dart',
     'Node.js & Express',
     'MongoDB & MySQL',
-    'Power BI Analytics',
-    'UI/UX Design'
+    'Python & PHP',
+    'HTML, CSS, JavaScript',
+    'Bootstrap & Tailwind CSS',
+    'Git & Figma'
   ];
 
   return (
@@ -53,7 +55,7 @@ const AboutSection: React.FC = () => {
               >Me</span>
             </h2>
             <p className="text-base md:text-lg text-foreground/70 max-w-2xl mx-auto">
-              Passionate developer crafting innovative digital solutions with modern technologies.
+              Passionate MERN Stack Developer crafting innovative digital solutions with modern technologies.
             </p>
           </motion.div>
           
@@ -88,7 +90,7 @@ const AboutSection: React.FC = () => {
                   <div className="w-full aspect-square rounded-full overflow-hidden">
                     <img 
                       src="/1000252889.jpg" 
-                      alt="NR Bhogyaan" 
+                      alt="N R Bhogyaan" 
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                     />
                   </div>
@@ -130,24 +132,55 @@ const AboutSection: React.FC = () => {
             >
               <div className="space-y-3 md:space-y-4">
                 <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
-                  Full Stack Developer & <span 
+                  MERN Stack Developer & <span 
                     className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
                   >Tech Enthusiast</span>
                 </h3>
                 <div className="space-y-2 md:space-y-3 text-sm md:text-base text-foreground/80">
                   <p>
-                    Hello! I'm NR Bhogyaan, a passionate Computer Science postgraduate with expertise in 
-                    MERN stack and Flutter development. Currently pursuing my Master's in Computer Applications 
-                    at KLN College of Engineering.
+                    Hello! I'm N R Bhogyaan, a passionate Computer Science postgraduate with expertise in 
+                    MERN stack development. Currently pursuing my Master's in Computer Applications 
+                    at KLN College of Engineering with a CGPA of 8.1/10.
                   </p>
                   <p>
                     I specialize in creating responsive web applications and cross-platform mobile apps, 
                     with hands-on experience in full-stack development, database management, and modern UI/UX design.
                   </p>
                   <p>
-                    Currently interning at MindVision Technology, where I'm honing my skills in MERN stack 
+                    Currently interning at MindVision Technologies, where I'm honing my skills in MERN stack 
                     development and contributing to innovative projects.
                   </p>
+                </div>
+              </div>
+
+              {/* Contact Info */}
+              <div className="space-y-2 md:space-y-3">
+                <h4 className="text-base md:text-lg font-semibold">Contact Information</h4>
+                <div className="space-y-2">
+                  <motion.div 
+                    className="flex items-center gap-2 text-sm md:text-base"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <MapPin className="w-4 h-4 text-primary" />
+                    <span>Madurai, Tamil Nadu</span>
+                  </motion.div>
+                  <motion.div 
+                    className="flex items-center gap-2 text-sm md:text-base"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Phone className="w-4 h-4 text-primary" />
+                    <span>+91 8870750574</span>
+                  </motion.div>
+                  <motion.div 
+                    className="flex items-center gap-2 text-sm md:text-base"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Mail className="w-4 h-4 text-primary" />
+                    <span>bhogyaannr@gmail.com</span>
+                  </motion.div>
                 </div>
               </div>
 
@@ -159,26 +192,26 @@ const AboutSection: React.FC = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <p className="text-xs text-foreground/60 uppercase tracking-wider">Name</p>
-                  <p className="font-semibold text-sm md:text-base">NR Bhogyaan</p>
+                  <p className="font-semibold text-sm md:text-base">N R Bhogyaan</p>
                 </motion.div>
                 <motion.div 
                   className="space-y-1 md:space-y-2"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <p className="text-xs text-foreground/60 uppercase tracking-wider">Location</p>
-                  <p className="font-semibold text-sm md:text-base flex items-center gap-1">
-                    <MapPin className="w-3 h-3 md:w-4 md:h-4" />
-                    Madurai, TN
+                  <p className="text-xs text-foreground/60 uppercase tracking-wider">
+                    Experience
                   </p>
+                  
+                  <p className="font-semibold text-sm md:text-base flex items-center gap-1">0.6 mon <Calendar1Icon className="inline-block text-primary w-4 h-4" /></p>
                 </motion.div>
                 <motion.div 
                   className="space-y-1 md:space-y-2"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <p className="text-xs text-foreground/60 uppercase tracking-wider">Experience</p>
-                  <p className="font-semibold text-sm md:text-base">0.6 Years</p>
+                  <p className="text-xs text-foreground/60 uppercase tracking-wider">Education</p>
+                  <p className="font-semibold text-sm md:text-base">MCA (8.1 CGPA)</p>
                 </motion.div>
                 <motion.div 
                   className="space-y-1 md:space-y-2"

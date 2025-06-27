@@ -1,33 +1,6 @@
-
 import { motion } from 'framer-motion';
 import { Github, Instagram, Twitter, Mail, Phone, MapPin, Heart, Linkedin } from 'lucide-react';
-
-const socialLinks = [
-  { 
-    name: "GitHub", 
-    icon: Github, 
-    url: "https://github.com/Bhogyaan",
-    color: "hover:text-gray-600 dark:hover:text-gray-300"
-  },
-  { 
-    name: "LinkedIn", 
-    icon: Linkedin, 
-    url: "https://linkedin.com/in/bhogyaannr",
-    color: "hover:text-blue-600"
-  },
-  { 
-    name: "Instagram", 
-    icon: Instagram, 
-    url: "https://instagram.com/bhogyaannr",
-    color: "hover:text-pink-500"
-  },
-  { 
-    name: "Twitter", 
-    icon: Twitter, 
-    url: "https://twitter.com/bhogyaannr",
-    color: "hover:text-blue-500"
-  }
-];
+import { socialLinks } from "@/lib/socialLinks";
 
 const quickLinks = [
   { name: "Home", href: "#home" },
@@ -72,7 +45,7 @@ const Footer = () => {
               N R Bhogyaan
             </h3>
             <p className="text-foreground/70 mb-4 max-w-md leading-relaxed text-sm">
-              Front-end developer passionate about creating responsive, user-friendly web applications with modern technologies and clean code.
+              MERN Stack Developer passionate about creating responsive, user-friendly web applications with modern technologies and clean code.
             </p>
             
             {/* Contact Info */}
@@ -99,7 +72,7 @@ const Footer = () => {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-foreground/70 transition-all duration-300 ${link.color}`}
+                  className={`p-2 rounded-lg bg-gray-100 dark:bg-gray-800 transition-all duration-300 ${link.color ? link.color : ''}`}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: 20 }}
@@ -107,7 +80,7 @@ const Footer = () => {
                   transition={{ delay: 0.1 * index }}
                   aria-label={link.name}
                 >
-                  <link.icon className="w-4 h-4" />
+                  <link.icon className="w-4 h-4" style={link.brandColor ? { color: link.brandColor } : {}} />
                 </motion.a>
               ))}
             </div>
@@ -142,7 +115,7 @@ const Footer = () => {
           >
             <h4 className="text-lg font-semibold mb-4">Technologies</h4>
             <div className="space-y-1">
-              {["React.js", "Vue.js", "JavaScript", "Python", "Node.js", "MongoDB"].map((skill, index) => (
+              {["React.js", "Vue.js", "Flutter", "Node.js", "MongoDB", "Python"].map((skill, index) => (
                 <div key={skill} className="text-sm text-foreground/70">
                   {skill}
                 </div>
@@ -158,15 +131,11 @@ const Footer = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="border-t border-border/50 mt-8 pt-6"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col md:flex-row justify-center items-center ">
             <p className="text-sm text-foreground/60 text-center md:text-left">
               © {currentYear} N R Bhogyaan. All rights reserved.
             </p>
-            <div className="flex items-center gap-2 text-sm text-foreground/60">
-              <span>Made with</span>
-              <Heart className="w-4 h-4 text-red-500" />
-              <span>using React & Tailwind CSS</span>
-            </div>
+           
           </div>
         </motion.div>
       </div>
