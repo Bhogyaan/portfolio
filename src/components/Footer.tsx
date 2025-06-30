@@ -133,7 +133,7 @@ const Footer = () => {
         >
           <div className="flex flex-col md:flex-row justify-center items-center ">
             <p className="text-sm text-foreground/60 text-center md:text-left">
-              © {currentYear} N R Bhogyaan. All rights reserved.
+              © {currentYear}  Bhogyaan N R.
             </p>
            
           </div>
