@@ -23,8 +23,7 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "bcrypt", "Tailwind CSS"],
     links: {
-      demo: "https://blog-app.example.com",
-      github: "https://github.com/bhogyaannr/blog-app"
+      github: "https://github.com/Bhogyaan/NR_BLOG"
     },
     category: "Full Stack",
     status: "Completed",
@@ -40,8 +39,7 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     technologies: ["PHP", "HTML", "CSS", "JavaScript", "MySQL", "Bootstrap"],
     links: {
-      demo: "https://car-rental.example.com",
-      github: "https://github.com/bhogyaannr/car-rental"
+      github: "/404"
     },
     category: "Frontend",
     status: "Completed",
@@ -57,8 +55,7 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1606868306217-dbf5046868d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     technologies: ["PHP", "HTML", "CSS", "JavaScript", "MySQL", "Bootstrap"],
     links: {
-      demo: "https://quiz-platform.example.com",
-      github: "https://github.com/bhogyaannr/quiz-platform"
+      github: "https://github.com/Bhogyaan/quiz"
     },
     category: "Full Stack",
     status: "Completed",
@@ -237,24 +234,9 @@ const ProjectsSection: React.FC = () => {
 
                     {/* Links */}
                     <div className="flex gap-3">
-                      {project.links.demo && (
-                        <motion.a
-                          href={project.links.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 px-3 py-2 bg-primary/10 text-primary rounded-lg text-sm font-medium transition-all duration-300 hover:bg-primary/20"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                          Live Demo
-                        </motion.a>
-                      )}
                       {project.links.github && (
                         <motion.a
                           href={project.links.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
                           className="flex items-center gap-2 px-3 py-2 bg-accent/10 text-accent rounded-lg text-sm font-medium transition-all duration-300 hover:bg-accent/20"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}

@@ -144,25 +144,25 @@ const HomeSection = () => {
               </motion.a>
             ))}
           </motion.div>
-        </div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.a
-            href="#about"
-            className="flex flex-col items-center text-foreground/60 hover:text-foreground transition-colors duration-300"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          {/* Scroll Indicator - now directly below social links */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.8, delay: 1.4 }}
+            className="pt-8"
           >
-            <span className="text-sm mb-2">Scroll Down</span>
-            <ChevronDown className="w-6 h-6" />
-          </motion.a>
-        </motion.div>
+            <motion.a
+              href="#about"
+              className="flex flex-col items-center text-foreground/60 hover:text-foreground transition-colors duration-300"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <span className="text-sm mb-2">Scroll Down</span>
+              <ChevronDown className="w-6 h-6" />
+            </motion.a>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

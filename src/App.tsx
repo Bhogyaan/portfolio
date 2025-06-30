@@ -1,21 +1,22 @@
-
 import { useState, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { motion, AnimatePresence } from "framer-motion";
 
 import LoadingScreen from "@/components/LoadingScreen";
 import PortfolioPage from "@/pages/PortfolioPage";
+import NotFound from "@/pages/NotFound";
 
 // Create a client for React Query
 const queryClient = new QueryClient();
 
 const App = () => {
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     // This is just to ensure the loading screen shows for at least 2 seconds
@@ -33,7 +34,7 @@ const App = () => {
           <Toaster />
           <Sonner richColors closeButton position="top-right" />
           <AnimatePresence mode="wait">
-            {loading ? (
+            {(loading && location.pathname !== "/404") ? (
               <motion.div
                 key="loading"
                 initial={{ opacity: 1 }}
@@ -50,13 +51,11 @@ const App = () => {
                 transition={{ duration: 0.5 }}
                 className="min-h-screen"
               >
-                <BrowserRouter>
-                  <Routes>
-                    <Route path="/" element={<PortfolioPage />} />
-                    {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                    <Route path="*" element={<PortfolioPage />} />
-                  </Routes>
-                </BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<PortfolioPage />} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
               </motion.div>
             )}
           </AnimatePresence>
