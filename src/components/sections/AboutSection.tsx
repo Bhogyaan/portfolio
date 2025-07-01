@@ -219,10 +219,10 @@ const AboutSection: React.FC = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <p className="text-xs text-foreground/60 uppercase tracking-wider">Status</p>
-                  <p className="font-semibold text-green-400 flex items-center gap-2 text-sm md:text-base">
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                  <div className="font-semibold text-green-400 flex items-center gap-2 text-sm md:text-base">
+                    <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse inline-block" />
                     Available
-                  </p>
+                  </div>
                 </motion.div>
               </div>
 
