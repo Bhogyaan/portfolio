@@ -4,6 +4,8 @@ import { Mail, Phone, MapPin, Github, Instagram, Twitter, Send, Linkedin } from 
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { socialLinks } from "@/lib/socialLinks";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 interface ContactInfoItem {
   icon: React.ComponentType<any>;
@@ -202,13 +204,11 @@ const ContactSection: React.FC = () => {
                     <label htmlFor="user_name" className="block text-sm font-medium mb-2">
                       Your Name
                     </label>
-                    <input
+                    <Input
                       type="text"
                       id="user_name"
                       name="user_name"
                       required
-                      className="w-full p-4 glass-card rounded-xl border border-white/20 bg-white/5 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-300"
-                      style={{ backdropFilter: 'blur(20px)' }}
                       placeholder="Enter your name"
                     />
                   </div>
@@ -216,13 +216,11 @@ const ContactSection: React.FC = () => {
                     <label htmlFor="user_email" className="block text-sm font-medium mb-2">
                       Your Email
                     </label>
-                    <input
+                    <Input
                       type="email"
                       id="user_email"
                       name="user_email"
                       required
-                      className="w-full p-4 glass-card rounded-xl border border-white/20 bg-white/5 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-300"
-                      style={{ backdropFilter: 'blur(20px)' }}
                       placeholder="Enter your email"
                     />
                   </div>
@@ -232,13 +230,11 @@ const ContactSection: React.FC = () => {
                   <label htmlFor="subject" className="block text-sm font-medium mb-2">
                     Subject
                   </label>
-                  <input
+                  <Input
                     type="text"
                     id="subject"
                     name="subject"
                     required
-                    className="w-full p-4 glass-card rounded-xl border border-white/20 bg-white/5 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-300"
-                    style={{ backdropFilter: 'blur(20px)' }}
                     placeholder="What's this about?"
                   />
                 </div>
@@ -247,14 +243,13 @@ const ContactSection: React.FC = () => {
                   <label htmlFor="message" className="block text-sm font-medium mb-2">
                     Message
                   </label>
-                  <textarea
+                  <Textarea
                     id="message"
                     name="message"
                     rows={6}
                     required
-                    className="w-full p-4 glass-card rounded-xl border border-white/20 bg-white/5 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-300 resize-none"
-                    style={{ backdropFilter: 'blur(20px)' }}
                     placeholder="Tell me about your project or just say hi!"
+                    className="resize-none"
                   />
                 </div>
                 
