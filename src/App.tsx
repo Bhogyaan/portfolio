@@ -15,17 +15,22 @@ import NotFound from "@/pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => {
+    // Only show loading screen if not shown before
+    return !localStorage.getItem('hasLoadedOnce');
+  });
   const location = useLocation();
 
   useEffect(() => {
-    // This is just to ensure the loading screen shows for at least 2 seconds
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
+    if (loading) {
+      // Show loading screen for at least 2 seconds, then set flag
+      const timer = setTimeout(() => {
+        setLoading(false);
+        localStorage.setItem('hasLoadedOnce', 'true');
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [loading]);
 
   return (
     <QueryClientProvider client={queryClient}>
