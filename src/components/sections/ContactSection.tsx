@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Mail, Phone, MapPin, Github, Instagram, Twitter, Send, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Instagram, Twitter, Send, Linkedin, CheckCircle, XCircle } from 'lucide-react';
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { socialLinks } from "@/lib/socialLinks";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "@/hooks/use-toast";
 
 interface ContactInfoItem {
   icon: React.ComponentType<any>;
@@ -36,10 +37,64 @@ const ContactSection: React.FC = () => {
     emailjs.sendForm('service_be0w5jg', 'template_b8kpr6o', e.currentTarget, 'eZMCyfi1aQo3o9PNY')
       .then((result) => {
           console.log(result.text);
-          alert('Message sent successfully!');
+          toast({
+            title: (
+              <div className="flex items-center gap-2">
+                <motion.div
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                  className="flex items-center justify-center w-6 h-6 bg-green-500 rounded-full"
+                >
+                  <CheckCircle className="w-4 h-4 text-white" />
+                </motion.div>
+                <span className="font-semibold">Email Sent Successfully!</span>
+              </div>
+            ),
+            description: (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400"
+              >
+                <Mail className="w-4 h-4" />
+                Your message has been delivered successfully. I'll get back to you soon!
+              </motion.div>
+            ),
+            className: "border-green-200 bg-green-50 dark:bg-green-950/20 dark:border-green-800",
+            duration: 5000,
+          });
       }, (error) => {
           console.log(error.text);
-          alert('Failed to send message. Please try again later.');
+          toast({
+            title: (
+              <div className="flex items-center gap-2">
+                <motion.div
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                  className="flex items-center justify-center w-6 h-6 bg-red-500 rounded-full"
+                >
+                  <XCircle className="w-4 h-4 text-white" />
+                </motion.div>
+                <span className="font-semibold">Oops! Email Not Sent</span>
+              </div>
+            ),
+            description: (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="flex items-center gap-2 text-sm text-red-600 dark:text-red-400"
+              >
+                <Mail className="w-4 h-4" />
+                Please try again later or contact me directly at bhogyaannr@gmail.com
+              </motion.div>
+            ),
+            className: "border-red-200 bg-red-50 dark:bg-red-950/20 dark:border-red-800",
+            duration: 5000,
+          });
       })
       .finally(() => {
         setIsLoading(false);
