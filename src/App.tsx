@@ -15,30 +15,35 @@ import NotFound from "@/pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
-  // Show loading screen if no recent visit (within 1 hour)
+  // Show loading screen for 1.5s only on full page reload (refresh)
   const getShouldShowLoading = () => {
-    if (typeof window === 'undefined') return true;
-    const lastVisit = localStorage.getItem('lastVisit');
-    if (!lastVisit) return true;
-    const lastVisitTime = parseInt(lastVisit, 10);
-    const now = Date.now();
-    // 1 hour = 3600000 ms
-    return now - lastVisitTime > 3600000;
+    if (typeof window === 'undefined') return false;
+    const reloaded = sessionStorage.getItem('reloaded');
+    if (reloaded === 'true') {
+      sessionStorage.removeItem('reloaded');
+      return true;
+    }
+    return false;
   };
   const [loading, setLoading] = useState(getShouldShowLoading);
   const location = useLocation();
 
+  // Set a flag on refresh (page unload)
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      sessionStorage.setItem('reloaded', 'true');
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, []);
+
   useEffect(() => {
     if (loading) {
-      // Show loading screen for at least 2 seconds
+      // Show loading screen for 1.5 seconds
       const timer = setTimeout(() => {
         setLoading(false);
-        localStorage.setItem('lastVisit', Date.now().toString());
-      }, 2000);
+      }, 1500);
       return () => clearTimeout(timer);
-    } else {
-      // If not showing loading, update lastVisit immediately
-      localStorage.setItem('lastVisit', Date.now().toString());
     }
   }, [loading]);
 
