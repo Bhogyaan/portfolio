@@ -15,7 +15,7 @@ import NotFound from "@/pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
-  // Show loading screen for 1.5s only on full page reload (refresh)
+  // Show LoadingScreen for 1.5s only on true page load (refresh, close/reopen, direct nav)
   const getShouldShowLoading = () => {
     if (typeof window === 'undefined') return false;
     const reloaded = sessionStorage.getItem('reloaded');
@@ -39,7 +39,6 @@ const App = () => {
 
   useEffect(() => {
     if (loading) {
-      // Show loading screen for 1.5 seconds
       const timer = setTimeout(() => {
         setLoading(false);
       }, 1500);
