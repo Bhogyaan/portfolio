@@ -18,6 +18,21 @@
     <!-- <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" /> -->
     
     <link rel="icon" type="image/jpeg" href="/1000252889.jpg" />
+    <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('theme');
+        if (
+          theme === 'dark' ||
+          (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+    </script>
   </head>
 
   <body>

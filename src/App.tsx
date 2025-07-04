@@ -15,20 +15,30 @@ import NotFound from "@/pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [loading, setLoading] = useState(() => {
-    // Only show loading screen if not shown before
-    return !localStorage.getItem('hasLoadedOnce');
-  });
+  // Show loading screen if no recent visit (within 1 hour)
+  const getShouldShowLoading = () => {
+    if (typeof window === 'undefined') return true;
+    const lastVisit = localStorage.getItem('lastVisit');
+    if (!lastVisit) return true;
+    const lastVisitTime = parseInt(lastVisit, 10);
+    const now = Date.now();
+    // 1 hour = 3600000 ms
+    return now - lastVisitTime > 3600000;
+  };
+  const [loading, setLoading] = useState(getShouldShowLoading);
   const location = useLocation();
 
   useEffect(() => {
     if (loading) {
-      // Show loading screen for at least 2 seconds, then set flag
+      // Show loading screen for at least 2 seconds
       const timer = setTimeout(() => {
         setLoading(false);
-        localStorage.setItem('hasLoadedOnce', 'true');
+        localStorage.setItem('lastVisit', Date.now().toString());
       }, 2000);
       return () => clearTimeout(timer);
+    } else {
+      // If not showing loading, update lastVisit immediately
+      localStorage.setItem('lastVisit', Date.now().toString());
     }
   }, [loading]);
 
